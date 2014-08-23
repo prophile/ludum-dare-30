@@ -7,9 +7,7 @@ public class PlayerShip {
     private final float m_heading;
 
     public PlayerShip() {
-        m_x = 0.0f;
-        m_y = 0.0f;
-        m_heading = 0.0f;
+        this(0.0f, 0.0f, 0.0f);
     }
     
     public PlayerShip(float x, float y, float heading) {
