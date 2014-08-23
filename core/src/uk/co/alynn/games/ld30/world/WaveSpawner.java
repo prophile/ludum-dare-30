@@ -27,7 +27,9 @@ public class WaveSpawner {
     }
     
     private void spawnAsteroidLeft() {
-        spawn(new Asteroid(-15.0f, (float)MathUtils.random(0, Gdx.graphics.getHeight()), MathUtils.random((float)(-0.25*Math.PI), (float) (0.25*Math.PI))));
+        float yPosition = (float)MathUtils.random(0, Gdx.graphics.getHeight());
+        float angle = MathUtils.random((float)(-0.25*Math.PI), (float) (0.25*Math.PI));
+        spawn(new Asteroid(-15.0f, yPosition, angle));
     }
     
     private void spawnWave(int waveID) {
