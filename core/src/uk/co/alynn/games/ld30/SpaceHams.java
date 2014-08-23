@@ -42,6 +42,10 @@ public class SpaceHams extends ApplicationAdapter {
         shipTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("ship", shipTexture);
         
+        Texture bgTexture = new Texture(Gdx.files.internal("background.png"), true);
+        bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
+        m_renderer.addSprite("background", bgTexture);
+        
         m_mainShip = new PlayerShip(400.0f, 400.0f, (float) (Math.PI * 0.25f));
         m_adversaries.add(new Asteroid(700.0f, 400.0f, 0.0f));
         
@@ -141,6 +145,7 @@ public class SpaceHams extends ApplicationAdapter {
 
             @Override
             public void run() {
+                m_renderer.draw("background", (int)(Gdx.graphics.getWidth() / 2), (int)(Gdx.graphics.getHeight() / 2));
                 m_renderer.draw("ship", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
                 Vector2 boundPos = m_mainShip.getBindPoint();
                 for (Bullet bullet : m_bullets) {
