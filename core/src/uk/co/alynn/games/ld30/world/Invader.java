@@ -33,7 +33,7 @@ public abstract class Invader implements Adversary {
 
     @Override
     public Adversary hitBullet() {
-        return this;
+        return null;
     }
 
     @Override
