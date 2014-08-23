@@ -25,6 +25,10 @@ public class SpaceHams extends ApplicationAdapter {
         titleTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("title-screen", titleTexture, (float)Gdx.graphics.getWidth() / 1440.0f);
         
+        Texture gameOverTexture = new Texture(Gdx.files.internal("game-over.png"), true);
+        gameOverTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
+        m_renderer.addSprite("game-over-screen", gameOverTexture, (float)Gdx.graphics.getWidth() / 1440.0f);
+        
         Texture asteroidTexture = new Texture("asteroid.png");
         m_renderer.addSprite("asteroid", asteroidTexture, 1.0f);
         
@@ -36,7 +40,7 @@ public class SpaceHams extends ApplicationAdapter {
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("background", bgTexture, 1.0f);
         
-        m_mode = new TitleMode();
+        m_mode = new TitleMode("title-screen");
         
         Gdx.input.setInputProcessor(new InputProcessor() {
 

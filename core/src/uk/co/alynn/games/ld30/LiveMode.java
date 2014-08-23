@@ -20,6 +20,7 @@ public class LiveMode implements GameMode {
     private List<Adversary> m_adversaries = new ArrayList<Adversary>();
     private List<Planet> m_planets = new ArrayList<Planet>();
     private WaveSpawner m_waveSpawner;
+    private boolean m_uded = false;
     
     public LiveMode() {
         m_planets.add(new Planet(300.0f, 300.0f));
@@ -42,7 +43,7 @@ public class LiveMode implements GameMode {
         
         spawnNewAdversaries();
         
-        return this;
+        return m_uded ? new TitleMode("game-over-screen") : this;
     }
     
     public void render(Renderer renderer) {
@@ -129,6 +130,7 @@ public class LiveMode implements GameMode {
                     @Override
                     public void run() {
                         System.err.println("GAME OVER MAN");
+                        m_uded = true;
                     }
                     
                 });
