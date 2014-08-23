@@ -21,6 +21,10 @@ public class SpaceHams extends ApplicationAdapter {
         Texture planetTexture = new Texture("planet-1.png");
         m_renderer.addSprite("planet-1", planetTexture, 1.0f);
         
+        Texture titleTexture = new Texture(Gdx.files.internal("title.png"), true);
+        titleTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
+        m_renderer.addSprite("title-screen", titleTexture, (float)Gdx.graphics.getWidth() / 1440.0f);
+        
         Texture asteroidTexture = new Texture("asteroid.png");
         m_renderer.addSprite("asteroid", asteroidTexture, 1.0f);
         
@@ -32,7 +36,7 @@ public class SpaceHams extends ApplicationAdapter {
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("background", bgTexture, 1.0f);
         
-        m_mode = new LiveMode();
+        m_mode = new TitleMode();
         
         Gdx.input.setInputProcessor(new InputProcessor() {
 
