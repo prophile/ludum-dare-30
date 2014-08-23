@@ -145,27 +145,13 @@ public class SpaceHams extends ApplicationAdapter {
 	@Override
 	public void render () {
 	    m_mainShip = m_mainShip.update(Gdx.graphics.getDeltaTime());
-	    List<Bullet> newBullets = new ArrayList<Bullet>();
-	    for (Bullet bullet : m_bullets) {
-	        Bullet bullet_ = bullet.update(Gdx.graphics.getDeltaTime());
-	        if (bullet_ != null) {
-	            newBullets.add(bullet_);
-	        }
-	    }
-	    m_bullets = newBullets;
+	    updateBullets();
 	    
-	    List<Adversary> newAdversaries = new ArrayList<Adversary>();
-	    for (Adversary adversary : m_adversaries) {
-	        Adversary adversary_ = adversary.update(Gdx.graphics.getDeltaTime());
-	        if (adversary_ != null) {
-	            newAdversaries.add(adversary_);
-	        }
-	    }
-	    m_adversaries = newAdversaries;
+	    updateAdversaries();
 	    
-	    for (Adversary adv : m_waveSpawner.update(Gdx.graphics.getDeltaTime())) {
-	        m_adversaries.add(adv);
-	    }
+	    collideAdversariesWithBullets();
+	    
+	    spawnNewAdversaries();
 	    
 	    m_renderer.frame(new Runnable() {
 
@@ -190,4 +176,52 @@ public class SpaceHams extends ApplicationAdapter {
 	        
 	    });
 	}
+
+    private void collideAdversariesWithBullets() {
+        List<Adversary> retainedAdversaries = new ArrayList<Adversary>();
+        for (Adversary adv : m_adversaries) {
+            Adversary advCurrent = adv;
+            List<Bullet> retainedBullets = new ArrayList<Bullet>();
+            for (Bullet bullet : m_bullets) {
+                if (advCurrent != null && Math.hypot(adv.getX() - bullet.getX(), adv.getY() - bullet.getY()) < 15.0f) {
+                    advCurrent = advCurrent.hitBullet();
+                } else {
+                    retainedBullets.add(bullet);
+                }
+            }
+            if (advCurrent != null) {
+                retainedAdversaries.add(advCurrent);
+            }
+            m_bullets = retainedBullets;
+        }
+        m_adversaries = retainedAdversaries;
+    }
+
+    private void spawnNewAdversaries() {
+        for (Adversary adv : m_waveSpawner.update(Gdx.graphics.getDeltaTime())) {
+	        m_adversaries.add(adv);
+	    }
+    }
+
+    private void updateAdversaries() {
+        List<Adversary> newAdversaries = new ArrayList<Adversary>();
+	    for (Adversary adversary : m_adversaries) {
+	        Adversary adversary_ = adversary.update(Gdx.graphics.getDeltaTime());
+	        if (adversary_ != null) {
+	            newAdversaries.add(adversary_);
+	        }
+	    }
+	    m_adversaries = newAdversaries;
+    }
+
+    private void updateBullets() {
+        List<Bullet> newBullets = new ArrayList<Bullet>();
+	    for (Bullet bullet : m_bullets) {
+	        Bullet bullet_ = bullet.update(Gdx.graphics.getDeltaTime());
+	        if (bullet_ != null) {
+	            newBullets.add(bullet_);
+	        }
+	    }
+	    m_bullets = newBullets;
+    }
 }

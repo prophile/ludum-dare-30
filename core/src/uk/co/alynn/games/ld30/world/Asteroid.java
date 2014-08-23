@@ -39,7 +39,7 @@ public class Asteroid implements Adversary {
 
     @Override
     public Adversary hitBullet() {
-        return this;
+        return null;
     }
 
     @Override
