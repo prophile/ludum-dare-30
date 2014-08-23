@@ -43,8 +43,8 @@ public class PlayerShip {
         return null;
     }
     
-    public PlayerShip bind(float x, float y) {
-        return new BoundPlayerShip(getX(), getY(), getHeading(), x, y);
+    public PlayerShip bind(float x, float y, int direction) {
+        return new BoundPlayerShip(getX(), getY(), getHeading(), x, y, direction);
     }
     
     public PlayerShip unbind() {

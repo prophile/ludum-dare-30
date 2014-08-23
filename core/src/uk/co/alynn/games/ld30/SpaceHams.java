@@ -6,6 +6,7 @@ import java.util.List;
 import uk.co.alynn.games.ld30.world.Adversary;
 import uk.co.alynn.games.ld30.world.Asteroid;
 import uk.co.alynn.games.ld30.world.Bullet;
+import uk.co.alynn.games.ld30.world.Constants;
 import uk.co.alynn.games.ld30.world.PlayerShip;
 import uk.co.alynn.games.ld30.world.WaveSpawner;
 
@@ -83,7 +84,19 @@ public class SpaceHams extends ApplicationAdapter {
                 }
                 if (button == Buttons.RIGHT) {
                     if (m_mainShip.getBindPoint() == null) {
-                        m_mainShip = m_mainShip.bind(xTarget, yTarget);
+                        // calculate direction
+                        float bindingOffset = (float) ((xTarget - m_mainShip.getX())*Math.sin(m_mainShip.getHeading()) - (yTarget - m_mainShip.getY())*Math.cos(m_mainShip.getHeading()));
+                        int direction;
+                        if (bindingOffset < -Constants.BIND_LIMIT) {
+                            direction = 1;
+                        } else if (bindingOffset > Constants.BIND_LIMIT) {
+                            direction = -1;
+                        } else {
+                            direction = 0;
+                        }
+                        if (direction != 0) {
+                            m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
+                        }
                     } else {
                         m_mainShip = m_mainShip.unbind();
                     }
