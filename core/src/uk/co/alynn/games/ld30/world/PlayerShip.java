@@ -37,6 +37,14 @@ public class PlayerShip {
         yPrime = wrap(yPrime, Gdx.graphics.getHeight());
         return new PlayerShip(xPrime, yPrime, m_heading);
     }
+    
+    public PlayerShip bind(float x, float y) {
+        return new BoundPlayerShip(getX(), getY(), getHeading(), x, y);
+    }
+    
+    public PlayerShip unbind() {
+        return this;
+    }
 
     private static float wrap(float newValue, float maximum) {
         while (newValue > (maximum + Constants.WRAP_BUFFER)) {

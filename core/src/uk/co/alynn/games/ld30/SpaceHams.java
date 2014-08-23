@@ -19,18 +19,22 @@ public class SpaceHams extends ApplicationAdapter {
 	    testTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("badlogic", testTexture);
         
-        m_mainShip = new PlayerShip(100.0f, 100.0f, (float) (Math.PI * 0.25f));
+        m_mainShip = new PlayerShip(400.0f, 400.0f, (float) (Math.PI * 0.25f));
+        m_mainShip = m_mainShip.bind(500.0f, 300.0f);
 	}
 
 	@Override
 	public void render () {
+	    System.out.println("-- FRAME --");
+	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
 	    m_mainShip = m_mainShip.update(Gdx.graphics.getDeltaTime());
+	    System.out.println("DT = " + Gdx.graphics.getDeltaTime());
+	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
 	    
 	    m_renderer.frame(new Runnable() {
 
             @Override
             public void run() {
-                m_renderer.draw("badlogic", 100, 100, (float)(0.0*Math.PI));
                 m_renderer.draw("badlogic", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
             }
 	        
