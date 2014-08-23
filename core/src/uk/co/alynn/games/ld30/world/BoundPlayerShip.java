@@ -1,6 +1,7 @@
 package uk.co.alynn.games.ld30.world;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
 
 class BoundPlayerShip extends PlayerShip {
     private final float m_boundX, m_boundY;
@@ -14,6 +15,11 @@ class BoundPlayerShip extends PlayerShip {
     @Override
     public PlayerShip unbind() {
         return new PlayerShip(getX(), getY(), getHeading());
+    }
+    
+    @Override
+    public Vector2 getBindPoint() {
+        return new Vector2(m_boundX, m_boundY);
     }
     
     @Override
