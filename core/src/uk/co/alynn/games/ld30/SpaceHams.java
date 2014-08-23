@@ -89,22 +89,31 @@ public class SpaceHams extends ApplicationAdapter {
                 if (button == Buttons.RIGHT) {
                     if (m_mainShip.getBindPoint() == null) {
                         // calculate direction
-                        float bindingOffset = (float) ((xTarget - m_mainShip.getX())*Math.sin(m_mainShip.getHeading()) - (yTarget - m_mainShip.getY())*Math.cos(m_mainShip.getHeading()));
-                        int direction;
-                        if (bindingOffset < -Constants.BIND_LIMIT) {
-                            direction = 1;
-                        } else if (bindingOffset > Constants.BIND_LIMIT) {
-                            direction = -1;
-                        } else {
-                            direction = 0;
+                        for (Planet planet : m_planets) {
+                            if (Math.hypot(xTarget - planet.getX(), yTarget - planet.getY()) < Constants.PLANET_BIND_RADIUS &&
+                                    Math.hypot(m_mainShip.getX() - planet.getX(), m_mainShip.getY() - planet.getY()) < Constants.PLANET_BIND_RADIUS) {
+                                xTarget = (int)planet.getX();
+                                yTarget = (int)planet.getY();
+                                float bindingOffset = (float) ((xTarget - m_mainShip.getX())*Math.sin(m_mainShip.getHeading()) - (yTarget - m_mainShip.getY())*Math.cos(m_mainShip.getHeading()));
+                                int direction;
+                                if (bindingOffset < -Constants.BIND_LIMIT) {
+                                    direction = 1;
+                                } else if (bindingOffset > Constants.BIND_LIMIT) {
+                                    direction = -1;
+                                } else {
+                                    direction = 0;
+                                }
+                                if (direction != 0) {
+                                    m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
+                                }
+                                return true;
+                            }
                         }
-                        if (direction != 0) {
-                            m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
-                        }
+                        return false;
                     } else {
                         m_mainShip = m_mainShip.unbind();
+                        return true;
                     }
-                    return true;
                 }
                 return false;
             }
