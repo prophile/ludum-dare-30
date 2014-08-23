@@ -33,14 +33,14 @@ public class WaveSpawner {
     }
     
     private void spawnInvaderTop() {
-        spawn(new EnteringInvader(400.0f, Gdx.graphics.getHeight() + 15.0f, 300.0f, 300.0f));
+        spawn(new EnteringInvader(MathUtils.random(20.0f, Gdx.graphics.getWidth() - 20.0f), Gdx.graphics.getHeight() + 15.0f, 300.0f, 300.0f));
     }
     
     private void spawnWave(int waveID) {
         if (waveID % 6 == 3) {
-            //spawnAsteroidLeft();
+            spawnAsteroidLeft();
         }
-        if (waveID == 4) {
+        if (waveID > 20 && waveID % 15 == 7) {
             spawnInvaderTop();
         }
     }
