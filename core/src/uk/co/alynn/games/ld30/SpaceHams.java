@@ -45,7 +45,7 @@ public class SpaceHams extends ApplicationAdapter {
         
         Texture shipTexture = new Texture(Gdx.files.internal("ship.png"), true);
         shipTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
-        m_renderer.addSprite("ship", shipTexture, 0.4f);
+        m_renderer.addSprite("ship", shipTexture, 0.25f);
         
         Texture bgTexture = new Texture(Gdx.files.internal("background.png"), true);
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
