@@ -29,7 +29,7 @@ class BoundPlayerShip extends PlayerShip {
         float translatedY = getY() - m_boundY;
         float boundRadius = (float) Math.hypot(translatedX, translatedY);
         float boundAngle = (float) Math.atan2(translatedY, translatedX);
-        float posStep = Constants.SPEED*dt;
+        float posStep = Constants.SPEED*Constants.SPEED_ROTATION_ADJ*dt;
         float calX = (2*boundRadius*boundRadius - posStep) / (2*boundRadius);
         //float calY = (float) (0.5f*Math.sqrt((posStep * (4*boundRadius*boundRadius - posStep)) / (boundRadius*boundRadius)));
         float calY = m_direction*(float)Math.sqrt(boundRadius*boundRadius - calX*calX);
