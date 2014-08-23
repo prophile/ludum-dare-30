@@ -12,7 +12,8 @@ public class HoldoffInvader extends Invader {
     public Adversary update(float dt) {
         float newHoldoff = m_remainingHoldoff - dt;
         if (newHoldoff < 0.0f) {
-            return null;
+            // FIXME: need some shooting behaviour here
+            return this;
         } else {
             return new HoldoffInvader(getX(), getY(), newHoldoff);
         }
