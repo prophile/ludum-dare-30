@@ -19,7 +19,7 @@ public class SpaceHams extends ApplicationAdapter {
         m_renderer.addSprite("target", targetTexture, 1.0f);
         
         Texture planetTexture = new Texture("planet-1.png");
-        m_renderer.addSprite("planet-1", planetTexture, 1.0f);
+        m_renderer.addSprite("planet-1", planetTexture, 0.5f);
         
         Texture titleTexture = new Texture(Gdx.files.internal("title.png"), true);
         titleTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
@@ -37,7 +37,7 @@ public class SpaceHams extends ApplicationAdapter {
         
         Texture shipTexture = new Texture(Gdx.files.internal("ship.png"), true);
         shipTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
-        m_renderer.addSprite("ship", shipTexture, 0.25f);
+        m_renderer.addSprite("ship", shipTexture, 0.15f);
         
         Texture bgTexture = new Texture(Gdx.files.internal("background.png"), true);
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
