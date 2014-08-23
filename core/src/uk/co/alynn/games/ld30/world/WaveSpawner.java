@@ -33,7 +33,7 @@ public class WaveSpawner {
     }
     
     private void spawnInvaderTop() {
-        spawn(new Invader(400.0f, Gdx.graphics.getHeight() + 15.0f, 300.0f, 300.0f));
+        spawn(new EnteringInvader(400.0f, Gdx.graphics.getHeight() + 15.0f, 300.0f, 300.0f));
     }
     
     private void spawnWave(int waveID) {
