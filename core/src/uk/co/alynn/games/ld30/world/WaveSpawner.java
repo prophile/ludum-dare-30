@@ -11,13 +11,13 @@ public class WaveSpawner {
     private float m_totalTime = 0.0f;
     private List<Adversary> m_newAdversaries = new ArrayList<Adversary>();
     
-    public List<Adversary> update(float dt) {
+    public List<Adversary> update(float dt, List<Planet> planets) {
         m_newAdversaries.clear();
         m_totalTime += dt;
         float tickID = m_totalTime / Constants.SECONDS_PER_TICK;
         int tickIDI = (int)tickID;
         while (tickIDI > m_lastWaveSpawned) {
-            spawnWave(++m_lastWaveSpawned);
+            spawnWave(++m_lastWaveSpawned, planets);
         }
         return m_newAdversaries;
     }
@@ -32,16 +32,18 @@ public class WaveSpawner {
         spawn(new Asteroid(-15.0f, yPosition, angle));
     }
     
-    private void spawnInvaderTop() {
-        spawn(new EnteringInvader(MathUtils.random(20.0f, Gdx.graphics.getWidth() - 20.0f), Gdx.graphics.getHeight() + 15.0f, 300.0f, 300.0f));
+    private void spawnInvaderTop(List<Planet> planets) {
+        int targetPlanet = MathUtils.random(planets.size());
+        Planet target = planets.get(targetPlanet);
+        spawn(new EnteringInvader(MathUtils.random(20.0f, Gdx.graphics.getWidth() - 20.0f), Gdx.graphics.getHeight() + 15.0f, target.getX(), target.getY()));
     }
     
-    private void spawnWave(int waveID) {
+    private void spawnWave(int waveID, List<Planet> planets) {
         if (waveID % 6 == 3) {
             spawnAsteroidLeft();
         }
         if (waveID > 20 && waveID % 15 == 7) {
-            spawnInvaderTop();
+            spawnInvaderTop(planets);
         }
     }
 }

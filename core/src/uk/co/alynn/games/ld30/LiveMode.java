@@ -24,7 +24,8 @@ public class LiveMode implements GameMode {
     
     public LiveMode() {
         m_planets.add(new Planet(300.0f, 300.0f));
-        m_planets.add(new Planet(700.0f, 800.0f));
+        m_planets.add(new Planet(700.0f, 500.0f));
+        m_planets.add(new Planet(750.0f, 250.0f));
         
         m_mainShip = new PlayerShip(400.0f, 400.0f, (float) (Math.PI * 0.25f));
         m_adversaries.add(new Asteroid(700.0f, 400.0f, 0.0f));
@@ -145,7 +146,7 @@ public class LiveMode implements GameMode {
     }
 
     private void spawnNewAdversaries() {
-        for (Adversary adv : m_waveSpawner.update(Gdx.graphics.getDeltaTime())) {
+        for (Adversary adv : m_waveSpawner.update(Gdx.graphics.getDeltaTime(), m_planets)) {
             m_adversaries.add(adv);
         }
     }
