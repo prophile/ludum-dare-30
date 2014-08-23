@@ -32,6 +32,9 @@ public class SpaceHams extends ApplicationAdapter {
         Texture asteroidTexture = new Texture("asteroid.png");
         m_renderer.addSprite("asteroid", asteroidTexture, 1.0f);
         
+        Texture invaderTexture = new Texture("invader.png");
+        m_renderer.addSprite("invader", invaderTexture, 1.0f);
+        
         Texture shipTexture = new Texture(Gdx.files.internal("ship.png"), true);
         shipTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("ship", shipTexture, 0.25f);

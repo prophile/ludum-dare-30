@@ -32,9 +32,16 @@ public class WaveSpawner {
         spawn(new Asteroid(-15.0f, yPosition, angle));
     }
     
+    private void spawnInvaderTop() {
+        spawn(new Invader(400.0f, Gdx.graphics.getHeight() + 15.0f, 300.0f, 300.0f));
+    }
+    
     private void spawnWave(int waveID) {
         if (waveID % 6 == 3) {
-            spawnAsteroidLeft();
+            //spawnAsteroidLeft();
+        }
+        if (waveID == 4) {
+            spawnInvaderTop();
         }
     }
 }
