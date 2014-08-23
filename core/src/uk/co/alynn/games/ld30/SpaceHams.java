@@ -1,10 +1,15 @@
 package uk.co.alynn.games.ld30;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import uk.co.alynn.games.ld30.world.Bullet;
 import uk.co.alynn.games.ld30.world.PlayerShip;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.math.Vector2;
@@ -12,6 +17,7 @@ import com.badlogic.gdx.math.Vector2;
 public class SpaceHams extends ApplicationAdapter {
 	private Renderer m_renderer;
 	private PlayerShip m_mainShip;
+	private List<Bullet> m_bullets = new ArrayList<Bullet>();
 	
 	@Override
 	public void create () {
@@ -30,6 +36,70 @@ public class SpaceHams extends ApplicationAdapter {
         
         m_mainShip = new PlayerShip(400.0f, 400.0f, (float) (Math.PI * 0.25f));
         m_mainShip = m_mainShip.bind(500.0f, 300.0f);
+        
+        Gdx.input.setInputProcessor(new InputProcessor() {
+
+            @Override
+            public boolean keyDown(int keycode) {
+                return false;
+            }
+
+            @Override
+            public boolean keyUp(int keycode) {
+                return false;
+            }
+
+            @Override
+            public boolean keyTyped(char character) {
+                return false;
+            }
+
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer,
+                    int button) {
+                float xTarget = (float)screenX;
+                float yTarget = (float)(Gdx.graphics.getHeight() - screenY);
+                if (button == Buttons.LEFT) {
+                    float dx = xTarget - m_mainShip.getX();
+                    float dy = yTarget - m_mainShip.getY();
+                    // add bullet
+                    Bullet bullet = new Bullet(m_mainShip.getX(), m_mainShip.getY(), (float)Math.atan2(dy, dx));
+                    m_bullets.add(bullet);
+                    return true;
+                }
+                if (button == Buttons.RIGHT) {
+                    if (m_mainShip.getBindPoint() == null) {
+                        m_mainShip = m_mainShip.bind(xTarget, yTarget);
+                    } else {
+                        m_mainShip = m_mainShip.unbind();
+                    }
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public boolean touchUp(int screenX, int screenY, int pointer,
+                    int button) {
+                return false;
+            }
+
+            @Override
+            public boolean touchDragged(int screenX, int screenY, int pointer) {
+                return false;
+            }
+
+            @Override
+            public boolean mouseMoved(int screenX, int screenY) {
+                return false;
+            }
+
+            @Override
+            public boolean scrolled(int amount) {
+                return false;
+            }
+            
+        });
 	}
 
 	@Override
@@ -37,13 +107,16 @@ public class SpaceHams extends ApplicationAdapter {
 	    System.out.println("-- FRAME --");
 	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
 	    m_mainShip = m_mainShip.update(Gdx.graphics.getDeltaTime());
+	    List<Bullet> newBullets = new ArrayList<Bullet>();
+	    for (Bullet bullet : m_bullets) {
+	        Bullet bullet_ = bullet.update(Gdx.graphics.getDeltaTime());
+	        if (bullet_ != null) {
+	        newBullets.add(bullet_);
+	        }
+	    }
+	    m_bullets = newBullets;
 	    System.out.println("DT = " + Gdx.graphics.getDeltaTime());
 	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
-	    
-	    if (Gdx.input.isButtonPressed(Buttons.RIGHT)) {
-	        // binding behaviour
-	        m_mainShip = m_mainShip.bind(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
-	    }
 	    
 	    m_renderer.frame(new Runnable() {
 
@@ -51,6 +124,9 @@ public class SpaceHams extends ApplicationAdapter {
             public void run() {
                 m_renderer.draw("ship", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
                 Vector2 boundPos = m_mainShip.getBindPoint();
+                for (Bullet bullet : m_bullets) {
+                    m_renderer.draw("target", (int)bullet.getX(), (int)bullet.getY());
+                }
                 if (boundPos != null) {
                     m_renderer.draw("target", (int)boundPos.x, (int)boundPos.y);
                 }
