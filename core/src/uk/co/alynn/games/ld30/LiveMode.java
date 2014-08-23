@@ -31,7 +31,7 @@ public class LiveMode implements GameMode {
         m_waveSpawner = new WaveSpawner();
     }
     
-    public void update() {
+    public GameMode update() {
         m_mainShip = m_mainShip.update(Gdx.graphics.getDeltaTime());
         updateBullets();
         
@@ -41,6 +41,8 @@ public class LiveMode implements GameMode {
         collideAdversariesWithPlayer();
         
         spawnNewAdversaries();
+        
+        return this;
     }
     
     public void render(Renderer renderer) {

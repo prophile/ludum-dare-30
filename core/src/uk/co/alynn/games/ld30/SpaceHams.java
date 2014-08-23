@@ -1,23 +1,11 @@
 package uk.co.alynn.games.ld30;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import uk.co.alynn.games.ld30.world.Adversary;
-import uk.co.alynn.games.ld30.world.Asteroid;
-import uk.co.alynn.games.ld30.world.Bullet;
-import uk.co.alynn.games.ld30.world.Constants;
-import uk.co.alynn.games.ld30.world.Planet;
-import uk.co.alynn.games.ld30.world.PlayerShip;
-import uk.co.alynn.games.ld30.world.WaveSpawner;
-
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
-import com.badlogic.gdx.math.Vector2;
 
 public class SpaceHams extends ApplicationAdapter {
 	private Renderer m_renderer;
@@ -105,7 +93,7 @@ public class SpaceHams extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-	    m_mode.update();
+	    GameMode nextMode = m_mode.update();
 	    m_renderer.frame(new Runnable() {
 
             @Override
@@ -114,5 +102,6 @@ public class SpaceHams extends ApplicationAdapter {
             }
 	        
 	    });
+	    m_mode = nextMode;
 	}
 }
