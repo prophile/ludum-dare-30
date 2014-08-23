@@ -7,6 +7,7 @@ import uk.co.alynn.games.ld30.world.Adversary;
 import uk.co.alynn.games.ld30.world.Asteroid;
 import uk.co.alynn.games.ld30.world.Bullet;
 import uk.co.alynn.games.ld30.world.Constants;
+import uk.co.alynn.games.ld30.world.Planet;
 import uk.co.alynn.games.ld30.world.PlayerShip;
 import uk.co.alynn.games.ld30.world.WaveSpawner;
 
@@ -23,18 +24,21 @@ public class SpaceHams extends ApplicationAdapter {
 	private PlayerShip m_mainShip;
 	private List<Bullet> m_bullets = new ArrayList<Bullet>();
 	private List<Adversary> m_adversaries = new ArrayList<Adversary>();
+	private List<Planet> m_planets = new ArrayList<Planet>();
 	private WaveSpawner m_waveSpawner;
 	
 	@Override
 	public void create () {
-	    m_renderer = new Renderer();
+	    m_planets.add(new Planet(300.0f, 300.0f));
+	    m_planets.add(new Planet(700.0f, 800.0f));
 	    
-	    Texture testTexture = new Texture(Gdx.files.internal("badlogic.jpg"), true);
-	    testTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
-        m_renderer.addSprite("badlogic", testTexture);
+	    m_renderer = new Renderer();
         
         Texture targetTexture = new Texture("target.png");
         m_renderer.addSprite("target", targetTexture);
+        
+        Texture planetTexture = new Texture("planet-1.png");
+        m_renderer.addSprite("planet-1", planetTexture);
         
         Texture asteroidTexture = new Texture("asteroid.png");
         m_renderer.addSprite("asteroid", asteroidTexture);
@@ -159,6 +163,9 @@ public class SpaceHams extends ApplicationAdapter {
             @Override
             public void run() {
                 m_renderer.draw("background", (int)(Gdx.graphics.getWidth() / 2), (int)(Gdx.graphics.getHeight() / 2));
+                for (Planet planet : m_planets) {
+                    m_renderer.draw(planet.getSprite(), (int)planet.getX(), (int)planet.getY());
+                }
                 m_renderer.draw("ship", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
                 Vector2 boundPos = m_mainShip.getBindPoint();
                 for (Bullet bullet : m_bullets) {
