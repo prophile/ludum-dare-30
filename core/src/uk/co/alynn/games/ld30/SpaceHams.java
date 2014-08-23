@@ -114,8 +114,6 @@ public class SpaceHams extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-	    System.out.println("-- FRAME --");
-	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
 	    m_mainShip = m_mainShip.update(Gdx.graphics.getDeltaTime());
 	    List<Bullet> newBullets = new ArrayList<Bullet>();
 	    for (Bullet bullet : m_bullets) {
@@ -138,9 +136,6 @@ public class SpaceHams extends ApplicationAdapter {
 	    for (Adversary adv : m_waveSpawner.update(Gdx.graphics.getDeltaTime())) {
 	        m_adversaries.add(adv);
 	    }
-	    
-	    System.out.println("DT = " + Gdx.graphics.getDeltaTime());
-	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
 	    
 	    m_renderer.frame(new Runnable() {
 
