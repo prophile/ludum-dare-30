@@ -28,7 +28,8 @@ public abstract class Invader implements Adversary {
 
     @Override
     public Adversary hitPlayer(Runnable terminateGame) {
-        return this;
+        terminateGame.run();
+        return null;
     }
 
     @Override
