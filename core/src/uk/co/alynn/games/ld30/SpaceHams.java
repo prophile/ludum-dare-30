@@ -35,21 +35,21 @@ public class SpaceHams extends ApplicationAdapter {
 	    m_renderer = new Renderer();
         
         Texture targetTexture = new Texture("target.png");
-        m_renderer.addSprite("target", targetTexture);
+        m_renderer.addSprite("target", targetTexture, 1.0f);
         
         Texture planetTexture = new Texture("planet-1.png");
-        m_renderer.addSprite("planet-1", planetTexture);
+        m_renderer.addSprite("planet-1", planetTexture, 1.0f);
         
         Texture asteroidTexture = new Texture("asteroid.png");
-        m_renderer.addSprite("asteroid", asteroidTexture);
+        m_renderer.addSprite("asteroid", asteroidTexture, 1.0f);
         
         Texture shipTexture = new Texture(Gdx.files.internal("ship.png"), true);
         shipTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
-        m_renderer.addSprite("ship", shipTexture);
+        m_renderer.addSprite("ship", shipTexture, 0.4f);
         
         Texture bgTexture = new Texture(Gdx.files.internal("background.png"), true);
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
-        m_renderer.addSprite("background", bgTexture);
+        m_renderer.addSprite("background", bgTexture, 1.0f);
         
         m_mainShip = new PlayerShip(400.0f, 400.0f, (float) (Math.PI * 0.25f));
         m_adversaries.add(new Asteroid(700.0f, 400.0f, 0.0f));
