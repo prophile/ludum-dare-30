@@ -21,17 +21,10 @@ import com.badlogic.gdx.math.Vector2;
 
 public class SpaceHams extends ApplicationAdapter {
 	private Renderer m_renderer;
-	private PlayerShip m_mainShip;
-	private List<Bullet> m_bullets = new ArrayList<Bullet>();
-	private List<Adversary> m_adversaries = new ArrayList<Adversary>();
-	private List<Planet> m_planets = new ArrayList<Planet>();
-	private WaveSpawner m_waveSpawner;
+	private GameMode m_mode;
 	
 	@Override
 	public void create () {
-	    m_planets.add(new Planet(300.0f, 300.0f));
-	    m_planets.add(new Planet(700.0f, 800.0f));
-	    
 	    m_renderer = new Renderer();
         
         Texture targetTexture = new Texture("target.png");
@@ -51,10 +44,7 @@ public class SpaceHams extends ApplicationAdapter {
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("background", bgTexture, 1.0f);
         
-        m_mainShip = new PlayerShip(400.0f, 400.0f, (float) (Math.PI * 0.25f));
-        m_adversaries.add(new Asteroid(700.0f, 400.0f, 0.0f));
-        
-        m_waveSpawner = new WaveSpawner();
+        m_mode = new LiveMode();
         
         Gdx.input.setInputProcessor(new InputProcessor() {
 
@@ -76,44 +66,15 @@ public class SpaceHams extends ApplicationAdapter {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer,
                     int button) {
-                float xTarget = (float)screenX;
-                float yTarget = (float)(Gdx.graphics.getHeight() - screenY);
+                int xTarget = screenX;
+                int yTarget = (Gdx.graphics.getHeight() - screenY);
                 if (button == Buttons.LEFT) {
-                    float dx = xTarget - m_mainShip.getX();
-                    float dy = yTarget - m_mainShip.getY();
-                    // add bullet
-                    Bullet bullet = new Bullet(m_mainShip.getX(), m_mainShip.getY(), (float)Math.atan2(dy, dx));
-                    m_bullets.add(bullet);
+                    m_mode.leftClick(xTarget, yTarget);
                     return true;
                 }
                 if (button == Buttons.RIGHT) {
-                    if (m_mainShip.getBindPoint() == null) {
-                        // calculate direction
-                        for (Planet planet : m_planets) {
-                            if (Math.hypot(xTarget - planet.getX(), yTarget - planet.getY()) < Constants.PLANET_BIND_RADIUS &&
-                                    Math.hypot(m_mainShip.getX() - planet.getX(), m_mainShip.getY() - planet.getY()) < Constants.PLANET_BIND_RADIUS) {
-                                xTarget = (int)planet.getX();
-                                yTarget = (int)planet.getY();
-                                float bindingOffset = (float) ((xTarget - m_mainShip.getX())*Math.sin(m_mainShip.getHeading()) - (yTarget - m_mainShip.getY())*Math.cos(m_mainShip.getHeading()));
-                                int direction;
-                                if (bindingOffset < -Constants.BIND_LIMIT) {
-                                    direction = 1;
-                                } else if (bindingOffset > Constants.BIND_LIMIT) {
-                                    direction = -1;
-                                } else {
-                                    direction = 0;
-                                }
-                                if (direction != 0) {
-                                    m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
-                                }
-                                return true;
-                            }
-                        }
-                        return false;
-                    } else {
-                        m_mainShip = m_mainShip.unbind();
-                        return true;
-                    }
+                    m_mode.rightClick(xTarget, yTarget);
+                    return true;
                 }
                 return false;
             }
@@ -144,108 +105,14 @@ public class SpaceHams extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-	    m_mainShip = m_mainShip.update(Gdx.graphics.getDeltaTime());
-	    updateBullets();
-	    
-	    updateAdversaries();
-	    
-	    collideAdversariesWithBullets();
-	    collideAdversariesWithPlayer();
-	    
-	    spawnNewAdversaries();
-	    
+	    m_mode.update();
 	    m_renderer.frame(new Runnable() {
 
             @Override
             public void run() {
-                m_renderer.draw("background", (int)(Gdx.graphics.getWidth() / 2), (int)(Gdx.graphics.getHeight() / 2));
-                for (Planet planet : m_planets) {
-                    m_renderer.draw(planet.getSprite(), (int)planet.getX(), (int)planet.getY());
-                }
-                m_renderer.draw("ship", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
-                Vector2 boundPos = m_mainShip.getBindPoint();
-                for (Bullet bullet : m_bullets) {
-                    m_renderer.draw("target", (int)bullet.getX(), (int)bullet.getY());
-                }
-                if (boundPos != null) {
-                    m_renderer.draw("target", (int)boundPos.x, (int)boundPos.y);
-                }
-                for (Adversary adversary : m_adversaries) {
-                    m_renderer.draw(adversary.getImage(), (int)adversary.getX(), (int)adversary.getY(), adversary.getHeading());
-                }
+                m_mode.render(m_renderer);
             }
 	        
 	    });
 	}
-
-    private void collideAdversariesWithBullets() {
-        List<Adversary> retainedAdversaries = new ArrayList<Adversary>();
-        for (Adversary adv : m_adversaries) {
-            Adversary advCurrent = adv;
-            List<Bullet> retainedBullets = new ArrayList<Bullet>();
-            for (Bullet bullet : m_bullets) {
-                if (advCurrent != null && Math.hypot(adv.getX() - bullet.getX(), adv.getY() - bullet.getY()) < 15.0f) {
-                    advCurrent = advCurrent.hitBullet();
-                } else {
-                    retainedBullets.add(bullet);
-                }
-            }
-            if (advCurrent != null) {
-                retainedAdversaries.add(advCurrent);
-            }
-            m_bullets = retainedBullets;
-        }
-        m_adversaries = retainedAdversaries;
-    }
-    
-    private void collideAdversariesWithPlayer() {
-        List<Adversary> retainedAdversaries = new ArrayList<Adversary>();
-        for (Adversary adv : m_adversaries) {
-            if (Math.hypot(adv.getX() - m_mainShip.getX(), adv.getY() - m_mainShip.getY()) < 35.0f) {
-                // do the collision dance
-                Adversary adv_ = adv.hitPlayer(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        System.err.println("GAME OVER MAN");
-                    }
-                    
-                });
-                if (adv_ != null) {
-                    retainedAdversaries.add(adv_);
-                }
-            } else {
-                retainedAdversaries.add(adv);
-            }
-        }
-        m_adversaries = retainedAdversaries;
-    }
-
-    private void spawnNewAdversaries() {
-        for (Adversary adv : m_waveSpawner.update(Gdx.graphics.getDeltaTime())) {
-	        m_adversaries.add(adv);
-	    }
-    }
-
-    private void updateAdversaries() {
-        List<Adversary> newAdversaries = new ArrayList<Adversary>();
-	    for (Adversary adversary : m_adversaries) {
-	        Adversary adversary_ = adversary.update(Gdx.graphics.getDeltaTime());
-	        if (adversary_ != null) {
-	            newAdversaries.add(adversary_);
-	        }
-	    }
-	    m_adversaries = newAdversaries;
-    }
-
-    private void updateBullets() {
-        List<Bullet> newBullets = new ArrayList<Bullet>();
-	    for (Bullet bullet : m_bullets) {
-	        Bullet bullet_ = bullet.update(Gdx.graphics.getDeltaTime());
-	        if (bullet_ != null) {
-	            newBullets.add(bullet_);
-	        }
-	    }
-	    m_bullets = newBullets;
-    }
 }
