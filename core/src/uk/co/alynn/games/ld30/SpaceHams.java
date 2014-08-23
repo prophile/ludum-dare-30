@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import uk.co.alynn.games.ld30.world.Adversary;
+import uk.co.alynn.games.ld30.world.Asteroid;
 import uk.co.alynn.games.ld30.world.Bullet;
 import uk.co.alynn.games.ld30.world.PlayerShip;
+import uk.co.alynn.games.ld30.world.WaveSpawner;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
@@ -20,6 +22,7 @@ public class SpaceHams extends ApplicationAdapter {
 	private PlayerShip m_mainShip;
 	private List<Bullet> m_bullets = new ArrayList<Bullet>();
 	private List<Adversary> m_adversaries = new ArrayList<Adversary>();
+	private WaveSpawner m_waveSpawner;
 	
 	@Override
 	public void create () {
@@ -40,7 +43,9 @@ public class SpaceHams extends ApplicationAdapter {
         m_renderer.addSprite("ship", shipTexture);
         
         m_mainShip = new PlayerShip(400.0f, 400.0f, (float) (Math.PI * 0.25f));
-        m_mainShip = m_mainShip.bind(500.0f, 300.0f);
+        m_adversaries.add(new Asteroid(700.0f, 400.0f, 0.0f));
+        
+        m_waveSpawner = new WaveSpawner();
         
         Gdx.input.setInputProcessor(new InputProcessor() {
 
@@ -129,6 +134,10 @@ public class SpaceHams extends ApplicationAdapter {
 	        }
 	    }
 	    m_adversaries = newAdversaries;
+	    
+	    for (Adversary adv : m_waveSpawner.update(Gdx.graphics.getDeltaTime())) {
+	        m_adversaries.add(adv);
+	    }
 	    
 	    System.out.println("DT = " + Gdx.graphics.getDeltaTime());
 	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
