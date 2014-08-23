@@ -150,6 +150,7 @@ public class SpaceHams extends ApplicationAdapter {
 	    updateAdversaries();
 	    
 	    collideAdversariesWithBullets();
+	    collideAdversariesWithPlayer();
 	    
 	    spawnNewAdversaries();
 	    
@@ -193,6 +194,29 @@ public class SpaceHams extends ApplicationAdapter {
                 retainedAdversaries.add(advCurrent);
             }
             m_bullets = retainedBullets;
+        }
+        m_adversaries = retainedAdversaries;
+    }
+    
+    private void collideAdversariesWithPlayer() {
+        List<Adversary> retainedAdversaries = new ArrayList<Adversary>();
+        for (Adversary adv : m_adversaries) {
+            if (Math.hypot(adv.getX() - m_mainShip.getX(), adv.getY() - m_mainShip.getY()) < 35.0f) {
+                // do the collision dance
+                Adversary adv_ = adv.hitPlayer(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        System.err.println("GAME OVER MAN");
+                    }
+                    
+                });
+                if (adv_ != null) {
+                    retainedAdversaries.add(adv_);
+                }
+            } else {
+                retainedAdversaries.add(adv);
+            }
         }
         m_adversaries = retainedAdversaries;
     }

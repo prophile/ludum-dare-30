@@ -33,8 +33,9 @@ public class Asteroid implements Adversary {
     }
 
     @Override
-    public Adversary hitPlayer() {
-        return this;
+    public Adversary hitPlayer(Runnable terminateGame) {
+        terminateGame.run();
+        return null;
     }
 
     @Override

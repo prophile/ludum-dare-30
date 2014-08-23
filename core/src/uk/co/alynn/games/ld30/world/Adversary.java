@@ -5,7 +5,7 @@ public interface Adversary {
     public float getX();
     public float getY();
     public Adversary update(float dt);
-    public Adversary hitPlayer(); // plus some way of marking the player dead
+    public Adversary hitPlayer(Runnable terminateGame); // plus some way of marking the player dead
     public Adversary hitBullet();
     public float getHeading();
 }
