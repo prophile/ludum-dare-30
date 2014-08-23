@@ -35,6 +35,7 @@ class BoundPlayerShip extends PlayerShip {
         float rotatedY = (float) (calX*Math.sin(boundAngle) + calY*Math.cos(boundAngle));
         float finalX = rotatedX + m_boundX;
         float finalY = rotatedY + m_boundY;
-        return new BoundPlayerShip(finalX, finalY, getHeading(), m_boundX, m_boundY);
+        float newHeading = (float)Math.atan2(finalY - getY(), finalX - getX());
+        return new BoundPlayerShip(finalX, finalY, newHeading, m_boundX, m_boundY);
     }
 }

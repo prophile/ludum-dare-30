@@ -3,6 +3,7 @@ package uk.co.alynn.games.ld30;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.alynn.games.ld30.world.Adversary;
 import uk.co.alynn.games.ld30.world.Bullet;
 import uk.co.alynn.games.ld30.world.PlayerShip;
 
@@ -18,6 +19,7 @@ public class SpaceHams extends ApplicationAdapter {
 	private Renderer m_renderer;
 	private PlayerShip m_mainShip;
 	private List<Bullet> m_bullets = new ArrayList<Bullet>();
+	private List<Adversary> m_adversaries = new ArrayList<Adversary>();
 	
 	@Override
 	public void create () {
@@ -29,6 +31,9 @@ public class SpaceHams extends ApplicationAdapter {
         
         Texture targetTexture = new Texture("target.png");
         m_renderer.addSprite("target", targetTexture);
+        
+        Texture asteroidTexture = new Texture("asteroid.png");
+        m_renderer.addSprite("asteroid", asteroidTexture);
         
         Texture shipTexture = new Texture(Gdx.files.internal("ship.png"), true);
         shipTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
@@ -111,10 +116,20 @@ public class SpaceHams extends ApplicationAdapter {
 	    for (Bullet bullet : m_bullets) {
 	        Bullet bullet_ = bullet.update(Gdx.graphics.getDeltaTime());
 	        if (bullet_ != null) {
-	        newBullets.add(bullet_);
+	            newBullets.add(bullet_);
 	        }
 	    }
 	    m_bullets = newBullets;
+	    
+	    List<Adversary> newAdversaries = new ArrayList<Adversary>();
+	    for (Adversary adversary : m_adversaries) {
+	        Adversary adversary_ = adversary.update(Gdx.graphics.getDeltaTime());
+	        if (adversary_ != null) {
+	            newAdversaries.add(adversary_);
+	        }
+	    }
+	    m_adversaries = newAdversaries;
+	    
 	    System.out.println("DT = " + Gdx.graphics.getDeltaTime());
 	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
 	    
@@ -129,6 +144,9 @@ public class SpaceHams extends ApplicationAdapter {
                 }
                 if (boundPos != null) {
                     m_renderer.draw("target", (int)boundPos.x, (int)boundPos.y);
+                }
+                for (Adversary adversary : m_adversaries) {
+                    m_renderer.draw(adversary.getImage(), (int)adversary.getX(), (int)adversary.getY(), adversary.getHeading());
                 }
             }
 	        
