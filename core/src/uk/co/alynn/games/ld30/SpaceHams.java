@@ -4,6 +4,7 @@ import uk.co.alynn.games.ld30.world.PlayerShip;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.math.Vector2;
@@ -38,6 +39,11 @@ public class SpaceHams extends ApplicationAdapter {
 	    m_mainShip = m_mainShip.update(Gdx.graphics.getDeltaTime());
 	    System.out.println("DT = " + Gdx.graphics.getDeltaTime());
 	    System.out.println("Ship position: " + m_mainShip.getX() + " " + m_mainShip.getY());
+	    
+	    if (Gdx.input.isButtonPressed(Buttons.RIGHT)) {
+	        // binding behaviour
+	        m_mainShip = m_mainShip.bind(Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+	    }
 	    
 	    m_renderer.frame(new Runnable() {
 
