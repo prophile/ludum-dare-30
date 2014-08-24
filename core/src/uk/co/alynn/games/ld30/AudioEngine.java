@@ -28,7 +28,7 @@ public class AudioEngine {
     public void play(String effect) {
         Sound fx = m_fx.get(effect);
         if (effect.equals("tractor")) {
-            fx.play(0.1f);
+            fx.play(0.6f);
         } else {
             fx.play();
         }
