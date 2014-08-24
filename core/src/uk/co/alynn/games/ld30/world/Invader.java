@@ -40,7 +40,7 @@ public abstract class Invader implements Adversary {
     @Override
     public Adversary hitBullet() {
         AudioEngine.get().play("hit");
-        return null;
+        return new Wreckage(getX(), getY(), 0.0f);
     }
 
     @Override

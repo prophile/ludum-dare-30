@@ -2,22 +2,21 @@ package uk.co.alynn.games.ld30.world;
 
 import java.util.Iterator;
 
-import uk.co.alynn.games.ld30.AudioEngine;
 import uk.co.alynn.games.ld30.IterTools;
 
-public class Asteroid implements Adversary {
+public class Wreckage implements Adversary {
     private final float m_x, m_y;
-    private final float m_heading;
+    private final float m_age;
     
-    public Asteroid(float x, float y, float heading) {
+    public Wreckage(float x, float y, float age) {
         m_x = x;
         m_y = y;
-        m_heading = heading;
+        m_age = age;
     }
     
     @Override
     public String getImage() {
-        return "asteroid";
+        return "bang";
     }
 
     @Override
@@ -33,26 +32,25 @@ public class Asteroid implements Adversary {
     @SuppressWarnings("unchecked")
     @Override
     public Iterator<Adversary> update(float dt) {
-        float x_ = (float) (m_x + Constants.ASTEROID_SPEED*dt*Math.cos(m_heading));
-        float y_ = (float) (m_y + Constants.ASTEROID_SPEED*dt*Math.sin(m_heading));
-        return IterTools.just(new Asteroid(x_, y_, m_heading));
+        if (m_age > 0.4f) {
+            return IterTools.zero();
+        }
+        return IterTools.just(new Wreckage(m_x, m_y, m_age + dt));
     }
-
+    
     @Override
     public Adversary hitPlayer(Runnable terminateGame) {
-        terminateGame.run();
-        return null;
+        return this;
     }
 
     @Override
     public Adversary hitBullet() {
-        AudioEngine.get().play("hit");
-        return new Wreckage(getX(), getY(), 0.0f);
+        return this;
     }
 
     @Override
     public float getHeading() {
-        return m_heading;
+        return 0;
     }
 
     @Override
