@@ -95,7 +95,6 @@ public class LiveMode implements GameMode {
             renderer.draw("target", (int)bullet.getX(), (int)bullet.getY());
         }
         if (boundPos != null) {
-            renderer.draw("target", (int)boundPos.x, (int)boundPos.y);
             renderBindingWave(m_mainShip.getX(), m_mainShip.getY(), boundPos.x, boundPos.y, renderer);
         }
         for (Adversary adversary : m_adversaries) {

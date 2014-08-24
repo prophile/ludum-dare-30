@@ -88,9 +88,17 @@ public class Renderer {
     public void bindingWave(int x, int y, int x2, int y2) {
         // what nao
         m_spriteBatch.end();
-        m_shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        m_shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         m_shapeRenderer.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-        m_shapeRenderer.line(x, y, x2, y2);
+        final int FLANGE = 60;
+        float xDiff = (float)(x2 - x);
+        float yDiff = (float)(y2 - y);
+        float length = (float) Math.hypot(xDiff, yDiff);
+        xDiff /= length;
+        yDiff /= length;
+        xDiff *= FLANGE;
+        yDiff *= FLANGE;
+        m_shapeRenderer.triangle((int)x, (int)y, x2 + yDiff, y2 - xDiff, x2 - yDiff, y2 + xDiff);
         m_shapeRenderer.end();
         m_spriteBatch.begin();
     }
