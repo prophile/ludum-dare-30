@@ -15,6 +15,11 @@ public abstract class IterTools {
             public Object next() {
                 return null;
             }
+            
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
         };
     }
     
@@ -36,6 +41,11 @@ public abstract class IterTools {
                     collected = true;
                     return a;
                 }
+            }
+            
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
             }
         };
     }
