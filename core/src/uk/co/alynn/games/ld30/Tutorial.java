@@ -68,10 +68,10 @@ public class Tutorial {
         String displayedText;
         switch (stageText) {
         case 0:
-            displayedText = "Right-click to latch to a planet";
+            displayedText = "Hold right-click to latch to a planet";
             break;
         case 1:
-            displayedText = "Right-click again to unlatch";
+            displayedText = "Release to unlatch";
             break;
         case 2:
             displayedText = "Left-click to shoot";
