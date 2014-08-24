@@ -6,8 +6,11 @@ import java.util.Map;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Renderer {
@@ -17,10 +20,21 @@ public class Renderer {
     }
     
     private final SpriteBatch m_spriteBatch;
+    private final BitmapFont m_font;
     private final Map<String, Sprite> m_sprites = new HashMap<String, Sprite>();
     
     public Renderer() {
         m_spriteBatch = new SpriteBatch();
+        m_font = loadFont();
+    }
+    
+    private static BitmapFont loadFont() {
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("font.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size = 16;
+        BitmapFont font = generator.generateFont(parameter);
+        generator.dispose();
+        return font;
     }
     
     public void frame(Runnable renderFrame) {
@@ -28,6 +42,7 @@ public class Renderer {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         m_spriteBatch.begin();
         renderFrame.run();
+        text("FPS: " + Gdx.graphics.getFramesPerSecond(), 70, Gdx.graphics.getHeight() - 40, 0.7f);
         m_spriteBatch.end();
     }
     
@@ -58,5 +73,12 @@ public class Renderer {
     public void draw(String image,
                      int x, int y) {
         draw(image, x, y, 0.0f);
+    }
+    
+    public void text(String text,
+                     int x, int y,
+                     float alpha) {
+        m_font.setColor(1.0f, 1.0f, 1.0f, alpha);
+        m_font.draw(m_spriteBatch, text, x, y);
     }
 }
