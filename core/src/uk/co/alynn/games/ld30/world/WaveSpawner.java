@@ -34,6 +34,12 @@ public class WaveSpawner {
         spawn(new Asteroid(-15.0f, yPosition, angle));
     }
     
+    private void spawnAsteroidRight() {
+        float yPosition = (float)MathUtils.random(0, Gdx.graphics.getHeight());
+        float angle = MathUtils.random((float)(-0.25*Math.PI), (float) (0.25*Math.PI));
+        spawn(new Asteroid(Gdx.graphics.getWidth()+15.0f, yPosition, (float) (Math.PI + angle)));
+    }
+    
     private void spawnInvaderTop(List<Planet> planets) {
         int targetPlanet = MathUtils.random(planets.size() - 1);
         Planet target = planets.get(targetPlanet);
@@ -44,6 +50,9 @@ public class WaveSpawner {
     private void spawnWave(int waveID, List<Planet> planets) {
         if (waveID % 6 == 3) {
             spawnAsteroidLeft();
+        }
+        if (waveID % 5 == 2 && waveID > 40) {
+            spawnAsteroidRight();
         }
         if (waveID > 20 && waveID % 15 == 7) {
             spawnInvaderTop(planets);
