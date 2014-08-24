@@ -17,8 +17,7 @@ public class HoldoffInvader extends Invader {
     public Iterator<Adversary> update(float dt) {
         float newHoldoff = m_remainingHoldoff - dt;
         if (newHoldoff < 0.0f) {
-            // FIXME: need some shooting behaviour here
-            return IterTools.just(this);
+            return IterTools.just(new ShootingInvader(getX(), getY(), 0.0f));
         } else {
             return IterTools.just(new HoldoffInvader(getX(), getY(), newHoldoff));
         }

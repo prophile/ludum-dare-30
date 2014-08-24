@@ -13,4 +13,5 @@ public final class Constants {
     public static final float INVADER_HOLDOFF = 180.0f;
     public static final float INVADER_HOLDOFF_TIME = 4.0f;
     public static final float DEATH_HOLDOFF_TIME = 2.0f;
+    public static final float INVADER_SHOOT_PERIOD = 3.0f;
 }
