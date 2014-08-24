@@ -54,11 +54,11 @@ public class WaveSpawner {
     
     private void spawnWave(int waveID, List<Planet> planets) {
         int asteroidFrequency;
-        if (waveID > 120) {
+        if (waveID > 90) {
             asteroidFrequency = 1;
-        } else if (waveID > 60) {
+        } else if (waveID > 40) {
             asteroidFrequency = 2;
-        } else if (waveID > 30) {
+        } else if (waveID > 20) {
             asteroidFrequency = 4;
         } else {
             asteroidFrequency = 6;
@@ -71,14 +71,16 @@ public class WaveSpawner {
             }
         }
         int maxInvaders;
-        if (waveID > 120) {
-            maxInvaders = 4;
+        if (waveID > 150) {
+            maxInvaders = 6;
         } else if (waveID > 60) {
+            maxInvaders = 4;
+        } else if (waveID > 40) {
             maxInvaders = 2;
         } else {
             maxInvaders = 1;
         }
-        if (waveID > 20 && waveID % 15 == 7) {
+        if (waveID > 15 && waveID % 13 == 7) {
             int ninvaders = MathUtils.random(maxInvaders);
             for (int i = 0; i < ninvaders; ++i) {
                 spawnInvaderTop(planets);
