@@ -131,8 +131,8 @@ public class LiveMode implements GameMode {
         AudioEngine.get().play("shoot");
     }
     
-    public void rightClick(int xTarget, int yTarget) {
-        if (m_mainShip.getBindPoint() == null) {
+    public void rightMouse(boolean down, int xTarget, int yTarget) {
+        if (down) {
             // calculate direction
             for (Planet planet : m_planets) {
                 if (Math.hypot(xTarget - planet.getX(), yTarget - planet.getY()) < Constants.PLANET_BIND_RADIUS &&
@@ -149,17 +149,21 @@ public class LiveMode implements GameMode {
                         direction = 0;
                     }
                     if (direction != 0) {
+                        if (m_mainShip.getBindPoint() == null) {
+                            m_tutorial.didLatchToPlanet();
+                            AudioEngine.get().play("tractor");
+                        }
                         m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
-                        m_tutorial.didLatchToPlanet();
-                        AudioEngine.get().play("tractor");
                     }
                     return;
                 }
             }
         } else {
-            m_mainShip = m_mainShip.unbind();
-            m_tutorial.didUnlatch();
-            AudioEngine.get().stopAll("tractor");
+            if (m_mainShip.getBindPoint() != null) {
+                m_mainShip = m_mainShip.unbind();
+                m_tutorial.didUnlatch();
+                AudioEngine.get().stopAll("tractor");
+            }
         }
     }
 

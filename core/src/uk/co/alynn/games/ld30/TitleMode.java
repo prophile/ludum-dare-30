@@ -38,8 +38,10 @@ public class TitleMode implements GameMode {
     }
 
     @Override
-    public void rightClick(int x, int y) {
-        start();
+    public void rightMouse(boolean down, int x, int y) {
+        if (down) {
+            start();
+        }
     }
 
 }

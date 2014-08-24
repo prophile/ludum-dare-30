@@ -75,10 +75,6 @@ public class SpaceHams extends ApplicationAdapter {
                     m_mode.leftClick(xTarget, yTarget);
                     return true;
                 }
-                if (button == Buttons.RIGHT) {
-                    m_mode.rightClick(xTarget, yTarget);
-                    return true;
-                }
                 return false;
             }
 
@@ -109,6 +105,7 @@ public class SpaceHams extends ApplicationAdapter {
 	@Override
 	public void render () {
 	    Animate.update(Gdx.graphics.getDeltaTime());
+	    m_mode.rightMouse(Gdx.input.isButtonPressed(Buttons.RIGHT), Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
 	    GameMode nextMode = m_mode.update();
 	    m_renderer.frame(new Runnable() {
 

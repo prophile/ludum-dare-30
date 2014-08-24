@@ -5,5 +5,5 @@ public interface GameMode {
     public void render(Renderer renderer);
     
     public void leftClick(int x, int y);
-    public void rightClick(int x, int y);
+    public void rightMouse(boolean down, int x, int y);
 }
