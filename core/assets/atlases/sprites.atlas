@@ -1,0 +1,55 @@
+
+sprites.png
+size: 804,1018
+format: RGBA8888
+filter: MipMapLinearLinear,Linear
+repeat: none
+asteroid
+  rotate: false
+  xy: 756, 970
+  size: 48, 48
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+invader
+  rotate: false
+  xy: 504, 540
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+planet-1
+  rotate: false
+  xy: 504, 768
+  size: 250, 250
+  orig: 250, 250
+  offset: 0, 0
+  index: -1
+planet-2
+  rotate: false
+  xy: 2, 518
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+planet-3
+  rotate: false
+  xy: 2, 16
+  size: 500, 500
+  orig: 500, 500
+  offset: 0, 0
+  index: -1
+ship
+  rotate: false
+  xy: 504, 566
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: -1
+target
+  rotate: false
+  xy: 2, 2
+  size: 12, 12
+  orig: 12, 12
+  offset: 0, 0
+  index: -1

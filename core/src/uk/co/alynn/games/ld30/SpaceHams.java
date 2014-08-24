@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 public class SpaceHams extends ApplicationAdapter {
 	private Renderer m_renderer;
@@ -15,11 +16,10 @@ public class SpaceHams extends ApplicationAdapter {
 	public void create () {
 	    m_renderer = new Renderer();
         
-        Texture targetTexture = new Texture("target.png");
-        m_renderer.addSprite("target", targetTexture, 1.0f);
-        
-        Texture planetTexture = new Texture("planet-1.png");
-        m_renderer.addSprite("planet-1", planetTexture, 0.5f);
+	    TextureAtlas atlas = new TextureAtlas("atlases/sprites.atlas");
+	    
+	    m_renderer.addSprite("target", atlas.findRegion("target"), 1.0f);
+        m_renderer.addSprite("planet-1", atlas.findRegion("planet-1"), 0.5f);
         
         Texture titleTexture = new Texture(Gdx.files.internal("title.png"), true);
         titleTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
@@ -29,15 +29,9 @@ public class SpaceHams extends ApplicationAdapter {
         gameOverTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("game-over-screen", gameOverTexture, (float)Gdx.graphics.getWidth() / 1440.0f);
         
-        Texture asteroidTexture = new Texture("asteroid.png");
-        m_renderer.addSprite("asteroid", asteroidTexture, 1.0f);
-        
-        Texture invaderTexture = new Texture("invader.png");
-        m_renderer.addSprite("invader", invaderTexture, 1.0f);
-        
-        Texture shipTexture = new Texture(Gdx.files.internal("ship.png"), true);
-        shipTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
-        m_renderer.addSprite("ship", shipTexture, 0.15f);
+        m_renderer.addSprite("asteroid", atlas.findRegion("asteroid"), 1.0f);
+        m_renderer.addSprite("invader", atlas.findRegion("invader"), 1.0f);
+        m_renderer.addSprite("ship", atlas.findRegion("ship"), 0.15f);
         
         Texture bgTexture = new Texture(Gdx.files.internal("background.png"), true);
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);

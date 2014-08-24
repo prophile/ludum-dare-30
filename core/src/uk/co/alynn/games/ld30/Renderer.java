@@ -46,7 +46,7 @@ public class Renderer {
         m_spriteBatch.end();
     }
     
-    private void addSprite(String image, TextureRegion rg, float scale) {
+    void addSprite(String image, TextureRegion rg, float scale) {
         Sprite spr = new Sprite();
         spr.region = rg;
         spr.scale = scale;
