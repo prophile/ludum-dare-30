@@ -57,6 +57,10 @@ public class LiveMode implements GameMode {
             }
         }
         
+        if (m_uded) {
+            AudioEngine.get().play("game-over");
+        }
+        
         return m_uded ? new TitleMode("game-over-screen", Constants.DEATH_HOLDOFF_TIME) : this;
     }
     
