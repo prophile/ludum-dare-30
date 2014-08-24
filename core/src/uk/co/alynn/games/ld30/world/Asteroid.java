@@ -2,6 +2,7 @@ package uk.co.alynn.games.ld30.world;
 
 import java.util.Iterator;
 
+import uk.co.alynn.games.ld30.AudioEngine;
 import uk.co.alynn.games.ld30.IterTools;
 
 public class Asteroid implements Adversary {
@@ -45,6 +46,7 @@ public class Asteroid implements Adversary {
 
     @Override
     public Adversary hitBullet() {
+        AudioEngine.get().play("hit");
         return null;
     }
 

@@ -2,6 +2,8 @@ package uk.co.alynn.games.ld30.world;
 
 import java.util.Iterator;
 
+import uk.co.alynn.games.ld30.AudioEngine;
+
 public abstract class Invader implements Adversary {
 
     private final float m_x, m_y;
@@ -36,6 +38,7 @@ public abstract class Invader implements Adversary {
 
     @Override
     public Adversary hitBullet() {
+        AudioEngine.get().play("hit");
         return null;
     }
 

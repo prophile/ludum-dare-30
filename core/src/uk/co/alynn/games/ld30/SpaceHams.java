@@ -14,6 +14,8 @@ public class SpaceHams extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
+	    AudioEngine.get();
+	    
 	    TextureAtlas atlas = new TextureAtlas("atlases/sprites.atlas");
 	    
 	    m_renderer = new Renderer(atlas.createPatch("health"));

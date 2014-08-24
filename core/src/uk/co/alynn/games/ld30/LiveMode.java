@@ -23,6 +23,7 @@ public class LiveMode implements GameMode {
     private WaveSpawner m_waveSpawner;
     private boolean m_uded = false;
     private final Tutorial m_tutorial = new Tutorial();
+    private float m_tractorCheck = 0.5f;
     
     public LiveMode() {
         m_planets.add(new Planet(300.0f, 300.0f, 100, "planet-1"));
@@ -47,6 +48,14 @@ public class LiveMode implements GameMode {
         collideAdversariesWithBullets();
         collideAdversariesWithPlayer();
         collideAdversariesWithPlanets();
+        
+        m_tractorCheck -= Gdx.graphics.getDeltaTime();
+        if (m_tractorCheck < 0.0f) {
+            m_tractorCheck = 1.0f;
+            if (m_mainShip.getBindPoint() != null) {
+                AudioEngine.get().play("tractor");
+            }
+        }
         
         return m_uded ? new TitleMode("game-over-screen", Constants.DEATH_HOLDOFF_TIME) : this;
     }
@@ -119,6 +128,7 @@ public class LiveMode implements GameMode {
         Bullet bullet = new Bullet(m_mainShip.getX(), m_mainShip.getY(), (float)Math.atan2(dy, dx));
         m_bullets.add(bullet);
         m_tutorial.didShoot();
+        AudioEngine.get().play("shoot");
     }
     
     public void rightClick(int xTarget, int yTarget) {
@@ -141,6 +151,7 @@ public class LiveMode implements GameMode {
                     if (direction != 0) {
                         m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
                         m_tutorial.didLatchToPlanet();
+                        AudioEngine.get().play("tractor");
                     }
                     return;
                 }
@@ -148,6 +159,7 @@ public class LiveMode implements GameMode {
         } else {
             m_mainShip = m_mainShip.unbind();
             m_tutorial.didUnlatch();
+            AudioEngine.get().stopAll("tractor");
         }
     }
 

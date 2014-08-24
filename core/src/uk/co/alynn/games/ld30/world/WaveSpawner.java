@@ -3,6 +3,8 @@ package uk.co.alynn.games.ld30.world;
 import java.util.ArrayList;
 import java.util.List;
 
+import uk.co.alynn.games.ld30.AudioEngine;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 
@@ -36,6 +38,7 @@ public class WaveSpawner {
         int targetPlanet = MathUtils.random(planets.size() - 1);
         Planet target = planets.get(targetPlanet);
         spawn(new EnteringInvader(MathUtils.random(20.0f, Gdx.graphics.getWidth() - 20.0f), Gdx.graphics.getHeight() + 15.0f, target.getX(), target.getY()));
+        AudioEngine.get().play("invader-warn");
     }
     
     private void spawnWave(int waveID, List<Planet> planets) {
