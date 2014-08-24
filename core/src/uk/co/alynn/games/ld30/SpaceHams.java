@@ -20,6 +20,8 @@ public class SpaceHams extends ApplicationAdapter {
 	    
 	    m_renderer.addSprite("target", atlas.findRegion("target"), 1.0f);
         m_renderer.addSprite("planet-1", atlas.findRegion("planet-1"), 0.5f);
+        m_renderer.addSprite("planet-2", atlas.findRegion("planet-2"), 0.5f);
+        m_renderer.addSprite("planet-3", atlas.findRegion("planet-3"), 0.5f);
         
         Texture titleTexture = new Texture(Gdx.files.internal("title.png"), true);
         titleTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
@@ -33,7 +35,7 @@ public class SpaceHams extends ApplicationAdapter {
         m_renderer.addSprite("invader", atlas.findRegion("invader"), 1.0f);
         m_renderer.addSprite("ship", atlas.findRegion("ship"), 0.15f);
         m_renderer.addSprite("bullet", atlas.findRegion("bullet"), 0.4f);
-        
+
         Texture bgTexture = new Texture(Gdx.files.internal("background.png"), true);
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("background", bgTexture, 1.0f);

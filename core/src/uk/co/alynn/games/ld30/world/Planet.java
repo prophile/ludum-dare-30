@@ -3,11 +3,13 @@ package uk.co.alynn.games.ld30.world;
 public class Planet {
     private final float m_x, m_y;
     private final int m_health;
+    private final String m_sprite;
     
-    public Planet(float x, float y, int health) {
+    public Planet(float x, float y, int health, String sprite) {
         m_x = x;
         m_y = y;
         m_health = health;
+        m_sprite = sprite;
     }
     
     public float getX() {
@@ -23,6 +25,6 @@ public class Planet {
     }
     
     public String getSprite() {
-        return "planet-1";
+        return m_sprite;
     }
 }

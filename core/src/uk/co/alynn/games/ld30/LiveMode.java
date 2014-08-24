@@ -25,9 +25,9 @@ public class LiveMode implements GameMode {
     private final Tutorial m_tutorial = new Tutorial();
     
     public LiveMode() {
-        m_planets.add(new Planet(300.0f, 300.0f, 100));
-        m_planets.add(new Planet(700.0f, 500.0f, 100));
-        m_planets.add(new Planet(750.0f, 250.0f, 100));
+        m_planets.add(new Planet(300.0f, 300.0f, 100, "planet-1"));
+        m_planets.add(new Planet(700.0f, 500.0f, 100, "planet-2"));
+        m_planets.add(new Planet(750.0f, 250.0f, 100, "planet-3"));
         
         m_mainShip = new PlayerShip(50.0f, 400.0f, 0.0f);
         
@@ -62,7 +62,7 @@ public class LiveMode implements GameMode {
         DamagePlanet damager = new DamagePlanet() {
             @Override
             public void damage(int x) {
-                Planet newPlanet = new Planet(planet.getX(), planet.getY(), planet.getHealth() - x);
+                Planet newPlanet = new Planet(planet.getX(), planet.getY(), planet.getHealth() - x, planet.getSprite());
                 m_planets.set(i, newPlanet);
                 if (newPlanet.getHealth() <= 0) {
                     m_uded = true;
