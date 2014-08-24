@@ -16,4 +16,5 @@ public final class Constants {
     public static final float INVADER_SHOOT_PERIOD = 1.7f;
     public static final int INVADER_BULLET_DAMAGE = 5;
     public static final float PLANET_COLLIDE_RADIUS = 40.0f;
+    public static final float BULLET_FLIGHT_TIME = 0.6f;
 }

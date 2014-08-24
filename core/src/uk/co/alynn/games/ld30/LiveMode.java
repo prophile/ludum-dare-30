@@ -125,7 +125,7 @@ public class LiveMode implements GameMode {
         float dx = xTarget - m_mainShip.getX();
         float dy = yTarget - m_mainShip.getY();
         // add bullet
-        Bullet bullet = new Bullet(m_mainShip.getX(), m_mainShip.getY(), (float)Math.atan2(dy, dx));
+        Bullet bullet = new Bullet(m_mainShip.getX(), m_mainShip.getY(), (float)Math.atan2(dy, dx), 0.0f);
         m_bullets.add(bullet);
         m_tutorial.didShoot();
         AudioEngine.get().play("shoot");
