@@ -52,4 +52,9 @@ public class InvaderBullet implements Adversary {
         return 0;
     }
 
+    @Override
+    public Adversary hitPlanet(DamagePlanet damage) {
+        damage.damage(Constants.INVADER_BULLET_DAMAGE);
+        return null;
+    }
 }

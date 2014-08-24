@@ -10,4 +10,5 @@ public interface Adversary {
     public Adversary hitPlayer(Runnable terminateGame); // plus some way of marking the player dead
     public Adversary hitBullet();
     public float getHeading();
+    public Adversary hitPlanet(DamagePlanet damage);
 }

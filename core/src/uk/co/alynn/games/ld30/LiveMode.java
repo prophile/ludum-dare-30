@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import uk.co.alynn.games.ld30.world.Adversary;
 import uk.co.alynn.games.ld30.world.Bullet;
 import uk.co.alynn.games.ld30.world.Constants;
+import uk.co.alynn.games.ld30.world.DamagePlanet;
 import uk.co.alynn.games.ld30.world.Planet;
 import uk.co.alynn.games.ld30.world.PlayerShip;
 import uk.co.alynn.games.ld30.world.WaveSpawner;
@@ -45,10 +46,43 @@ public class LiveMode implements GameMode {
         
         collideAdversariesWithBullets();
         collideAdversariesWithPlayer();
+        collideAdversariesWithPlanets();
         
         return m_uded ? new TitleMode("game-over-screen", Constants.DEATH_HOLDOFF_TIME) : this;
     }
     
+    private void collideAdversariesWithPlanets() {
+        for (int i = 0; i < m_planets.size(); ++i) {
+            collideAdversariesWithPlanetByIndex(i);
+        }
+    }
+
+    private void collideAdversariesWithPlanetByIndex(final int i) {
+        final Planet planet = m_planets.get(i);
+        DamagePlanet damager = new DamagePlanet() {
+            @Override
+            public void damage(int x) {
+                Planet newPlanet = new Planet(planet.getX(), planet.getY(), planet.getHealth() - x);
+                m_planets.set(i, newPlanet);
+                if (newPlanet.getHealth() <= 0) {
+                    m_uded = true;
+                }
+            }
+        };
+        List<Adversary> newAdversaries = new ArrayList<Adversary>();
+        for (Adversary adversary : m_adversaries) {
+            if (Math.hypot(adversary.getX() - planet.getX(), adversary.getY() - planet.getY()) < Constants.PLANET_COLLIDE_RADIUS) {
+                Adversary newAdv = adversary.hitPlanet(damager);
+                if (newAdv != null) {
+                    newAdversaries.add(adversary);
+                }
+            } else {
+                newAdversaries.add(adversary);
+            }
+        }
+        m_adversaries = newAdversaries;
+    }
+
     public void render(Renderer renderer) {
         renderer.draw("background", (int)(Gdx.graphics.getWidth() / 2), (int)(Gdx.graphics.getHeight() / 2));
         for (Planet planet : m_planets) {

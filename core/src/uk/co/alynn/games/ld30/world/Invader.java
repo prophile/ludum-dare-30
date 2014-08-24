@@ -44,4 +44,8 @@ public abstract class Invader implements Adversary {
         return 0.0f;
     }
 
+    @Override
+    public Adversary hitPlanet(DamagePlanet damage) {
+        return this;
+    }
 }

@@ -53,4 +53,9 @@ public class Asteroid implements Adversary {
         return m_heading;
     }
 
+    @Override
+    public Adversary hitPlanet(DamagePlanet damage) {
+        return this;
+    }
+
 }
