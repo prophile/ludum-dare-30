@@ -33,7 +33,11 @@ public class SpaceHams extends ApplicationAdapter {
         gameOverTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("game-over-screen", gameOverTexture, (float)Gdx.graphics.getWidth() / 1440.0f);
         
-        m_renderer.addSprite("asteroid", atlas.findRegion("asteroid"), 1.0f);
+        m_renderer.addSprite("asteroid-0", atlas.findRegion("asteroid-0"), 0.1f);
+        m_renderer.addSprite("asteroid-1", atlas.findRegion("asteroid-1"), 0.1f);
+        m_renderer.addSprite("asteroid-2", atlas.findRegion("asteroid-2"), 0.1f);
+        m_renderer.addSprite("asteroid-3", atlas.findRegion("asteroid-3"), 0.1f);
+        m_renderer.addSprite("asteroid-4", atlas.findRegion("asteroid-4"), 0.1f);
         m_renderer.addSprite("invader-0", atlas.findRegion("invader-0"), 1.0f);
         m_renderer.addSprite("invader-1", atlas.findRegion("invader-1"), 1.0f);
         m_renderer.addSprite("invader-2", atlas.findRegion("invader-2"), 1.0f);

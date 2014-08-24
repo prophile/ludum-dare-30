@@ -2,6 +2,7 @@ package uk.co.alynn.games.ld30.world;
 
 import java.util.Iterator;
 
+import uk.co.alynn.games.ld30.Animate;
 import uk.co.alynn.games.ld30.AudioEngine;
 import uk.co.alynn.games.ld30.IterTools;
 
@@ -17,7 +18,7 @@ public class Asteroid implements Adversary {
     
     @Override
     public String getImage() {
-        return "asteroid";
+        return Animate.animate("asteroid", 5, 0.1f);
     }
 
     @Override
