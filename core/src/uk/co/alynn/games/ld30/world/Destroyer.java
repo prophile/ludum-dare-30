@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import uk.co.alynn.games.ld30.AudioEngine;
+
 public class Destroyer implements Adversary {
     private final float m_x, m_y;
     private final float m_playerX, m_playerY;
@@ -45,6 +47,7 @@ public class Destroyer implements Adversary {
         float cooldown_ = m_cooldown - dt;
         if (cooldown_ <= 0) {
             cooldown_ = Constants.DESTROYER_LATER_COOLDOWN;
+            AudioEngine.get().play("invader-shoot");
             nextAdversaries.add(new InvaderBullet(getX(), getY(), getHeading()));
         }
         nextAdversaries.add(new Destroyer(x_, y_, m_playerX, m_playerY, cooldown_));
@@ -59,6 +62,7 @@ public class Destroyer implements Adversary {
 
     @Override
     public Adversary hitBullet() {
+        AudioEngine.get().play("hit");
         return new Wreckage(getX(), getY(), 0.0f);
     }
 
