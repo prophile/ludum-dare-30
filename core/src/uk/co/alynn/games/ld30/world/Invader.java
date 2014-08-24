@@ -1,5 +1,7 @@
 package uk.co.alynn.games.ld30.world;
 
+import java.util.Iterator;
+
 public abstract class Invader implements Adversary {
 
     private final float m_x, m_y;
@@ -24,7 +26,7 @@ public abstract class Invader implements Adversary {
         return m_y;
     }
     
-    abstract public Adversary update(float dt);
+    abstract public Iterator<Adversary> update(float dt);
 
     @Override
     public Adversary hitPlayer(Runnable terminateGame) {

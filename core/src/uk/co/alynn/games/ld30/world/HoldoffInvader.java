@@ -1,5 +1,9 @@
 package uk.co.alynn.games.ld30.world;
 
+import java.util.Iterator;
+
+import uk.co.alynn.games.ld30.IterTools;
+
 public class HoldoffInvader extends Invader {
     private final float m_remainingHoldoff;
     
@@ -8,14 +12,15 @@ public class HoldoffInvader extends Invader {
         m_remainingHoldoff = remainingHoldoff;
     }
     
+    @SuppressWarnings("unchecked")
     @Override
-    public Adversary update(float dt) {
+    public Iterator<Adversary> update(float dt) {
         float newHoldoff = m_remainingHoldoff - dt;
         if (newHoldoff < 0.0f) {
             // FIXME: need some shooting behaviour here
-            return this;
+            return IterTools.just(this);
         } else {
-            return new HoldoffInvader(getX(), getY(), newHoldoff);
+            return IterTools.just(new HoldoffInvader(getX(), getY(), newHoldoff));
         }
     }
 }

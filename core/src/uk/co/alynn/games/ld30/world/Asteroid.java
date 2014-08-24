@@ -1,5 +1,9 @@
 package uk.co.alynn.games.ld30.world;
 
+import java.util.Iterator;
+
+import uk.co.alynn.games.ld30.IterTools;
+
 public class Asteroid implements Adversary {
     private final float m_x, m_y;
     private final float m_heading;
@@ -25,11 +29,12 @@ public class Asteroid implements Adversary {
         return m_y;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public Adversary update(float dt) {
+    public Iterator<Adversary> update(float dt) {
         float x_ = (float) (m_x + Constants.ASTEROID_SPEED*dt*Math.cos(m_heading));
         float y_ = (float) (m_y + Constants.ASTEROID_SPEED*dt*Math.sin(m_heading));
-        return new Asteroid(x_, y_, m_heading);
+        return IterTools.just(new Asteroid(x_, y_, m_heading));
     }
 
     @Override

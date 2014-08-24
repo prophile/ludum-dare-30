@@ -1,6 +1,7 @@
 package uk.co.alynn.games.ld30;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -162,9 +163,9 @@ public class LiveMode implements GameMode {
     private void updateAdversaries() {
         List<Adversary> newAdversaries = new ArrayList<Adversary>();
         for (Adversary adversary : m_adversaries) {
-            Adversary adversary_ = adversary.update(Gdx.graphics.getDeltaTime());
-            if (adversary_ != null) {
-                newAdversaries.add(adversary_);
+            Iterator<Adversary> returnedAdversaries = adversary.update(Gdx.graphics.getDeltaTime());
+            while (returnedAdversaries.hasNext()) {
+                newAdversaries.add(returnedAdversaries.next());
             }
         }
         m_adversaries = newAdversaries;

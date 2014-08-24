@@ -1,5 +1,9 @@
 package uk.co.alynn.games.ld30.world;
 
+import java.util.Iterator;
+
+import uk.co.alynn.games.ld30.IterTools;
+
 public class EnteringInvader extends Invader {
     private final float m_targetX, m_targetY;
     
@@ -9,8 +13,9 @@ public class EnteringInvader extends Invader {
         m_targetY = targetY;
     }
     
+    @SuppressWarnings("unchecked")
     @Override
-    public Adversary update(float dt) {
+    public Iterator<Adversary> update(float dt) {
         float offX = m_targetX - getX();
         float offY = m_targetY - getY();
         float distance = (float) Math.hypot(offX, offY);
@@ -19,9 +24,9 @@ public class EnteringInvader extends Invader {
             float unitY = offY/distance;
             float newX = getX() + unitX*dt*Constants.SPEED_INVADER;
             float newY = getY() + unitY*dt*Constants.SPEED_INVADER;
-            return new EnteringInvader(newX, newY, m_targetX, m_targetY);
+            return IterTools.just(new EnteringInvader(newX, newY, m_targetX, m_targetY));
         } else {
-            return new HoldoffInvader(getX(), getY(), Constants.INVADER_HOLDOFF_TIME);
+            return IterTools.just(new HoldoffInvader(getX(), getY(), Constants.INVADER_HOLDOFF_TIME));
         }
     }
 }
