@@ -11,6 +11,13 @@ asteroid
   orig: 48, 48
   offset: 0, 0
   index: -1
+bullet
+  rotate: false
+  xy: 706, 755
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
 invader
   rotate: false
   xy: 504, 540

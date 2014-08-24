@@ -15,7 +15,7 @@ public class InvaderBullet implements Adversary {
     
     @Override
     public String getImage() {
-        return "target";
+        return "bullet";
     }
 
     @Override
