@@ -28,7 +28,6 @@ public class LiveMode implements GameMode {
         m_planets.add(new Planet(750.0f, 250.0f));
         
         m_mainShip = new PlayerShip(400.0f, 400.0f, (float) (Math.PI * 0.25f));
-        m_adversaries.add(new Asteroid(700.0f, 400.0f, 0.0f));
         
         m_waveSpawner = new WaveSpawner();
     }
