@@ -2,12 +2,17 @@ package uk.co.alynn.games.ld30;
 
 public class Tutorial {
     private int m_tutorialStage = 0;
+    private float m_timeSinceSwitch = 0.0f;
     // stage 0: need to latch
     // stage 1: need to unlatch
     // stage 2: need to shoot
     // stage 3: done
+    
+    private final static float TEXT_FADE_TIME = 0.3f;
+    private final static float GL_TIME = 6.0f;
 
     public void update(float deltaTime) {
+        m_timeSinceSwitch += deltaTime;
     }
 
     public boolean isFinished() {
@@ -21,35 +26,64 @@ public class Tutorial {
     public void didShoot() {
         if (m_tutorialStage == 2) {
             m_tutorialStage = 3;
+            m_timeSinceSwitch = 0.0f;
         }
     }
 
     public void didLatchToPlanet() {
         if (m_tutorialStage == 0) {
             m_tutorialStage = 1;
+            m_timeSinceSwitch = 0.0f;
         }
     }
 
     public void didUnlatch() {
         if (m_tutorialStage == 1) {
             m_tutorialStage = 2;
+            m_timeSinceSwitch = 0.0f;
         }
     }
 
     public void render(Renderer renderer) {
-        switch (m_tutorialStage) {
+        float alpha;
+        int stageText = m_tutorialStage;
+        if (m_timeSinceSwitch > (2*TEXT_FADE_TIME)) {
+            alpha = 1.0f;
+        } else if (m_timeSinceSwitch > TEXT_FADE_TIME) {
+            alpha = (m_timeSinceSwitch - TEXT_FADE_TIME) / TEXT_FADE_TIME;
+        } else {
+            alpha = (TEXT_FADE_TIME - m_timeSinceSwitch) / TEXT_FADE_TIME;
+            --stageText;
+        }
+        
+        if (stageText == 3 && m_timeSinceSwitch > TEXT_FADE_TIME + GL_TIME) {
+            float displayTime = m_timeSinceSwitch - TEXT_FADE_TIME - GL_TIME;
+            if (displayTime < TEXT_FADE_TIME) {
+                alpha = (TEXT_FADE_TIME - displayTime) / TEXT_FADE_TIME;
+            } else {
+                alpha = 0.0f;
+            }
+        }
+        
+        String displayedText;
+        switch (stageText) {
         case 0:
-            renderer.text("Right-click to latch to a planet", 10, 16, 1.0f);
+            displayedText = "Right-click to latch to a planet";
             break;
         case 1:
-            renderer.text("Right-click again to unlatch", 10, 16, 1.0f);
+            displayedText = "Right-click again to unlatch";
             break;
         case 2:
-            renderer.text("Left-click to shoot", 10, 16, 1.0f);
+            displayedText = "Left-click to shoot";
+            break;
+        case 3:
+            displayedText = "Destroy things that move. Good luck!";
             break;
         default:
+            displayedText = "";
             break;
         }
+        renderer.text(displayedText, 10, 16, alpha);
     }
 
 }
