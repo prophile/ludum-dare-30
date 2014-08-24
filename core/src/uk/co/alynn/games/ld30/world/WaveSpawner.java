@@ -65,8 +65,19 @@ public class WaveSpawner {
                 spawnAsteroidRight();
             }
         }
+        int maxInvaders;
+        if (waveID > 120) {
+            maxInvaders = 4;
+        } else if (waveID > 60) {
+            maxInvaders = 2;
+        } else {
+            maxInvaders = 1;
+        }
         if (waveID > 20 && waveID % 15 == 7) {
-            spawnInvaderTop(planets);
+            int ninvaders = MathUtils.random(maxInvaders);
+            for (int i = 0; i < ninvaders; ++i) {
+                spawnInvaderTop(planets);
+            }
         }
     }
 }
