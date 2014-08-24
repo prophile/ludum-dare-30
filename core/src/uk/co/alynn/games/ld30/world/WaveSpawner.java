@@ -48,11 +48,20 @@ public class WaveSpawner {
     }
     
     private void spawnWave(int waveID, List<Planet> planets) {
-        if (waveID % 6 == 3) {
-            spawnAsteroidLeft();
+        int asteroidFrequency;
+        if (waveID > 60) {
+            asteroidFrequency = 2;
+        } else if (waveID > 30) {
+            asteroidFrequency = 4;
+        } else {
+            asteroidFrequency = 6;
         }
-        if (waveID % 5 == 2 && waveID > 40) {
-            spawnAsteroidRight();
+        if (waveID % asteroidFrequency == 1) {
+            if (MathUtils.random(1) == 1) {
+                spawnAsteroidLeft();
+            } else {
+                spawnAsteroidRight();
+            }
         }
         if (waveID > 20 && waveID % 15 == 7) {
             spawnInvaderTop(planets);
