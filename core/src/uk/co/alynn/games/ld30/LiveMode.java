@@ -87,7 +87,8 @@ public class LiveMode implements GameMode {
         renderer.draw("background", (int)(Gdx.graphics.getWidth() / 2), (int)(Gdx.graphics.getHeight() / 2));
         for (Planet planet : m_planets) {
             renderer.draw(planet.getSprite(), (int)planet.getX(), (int)planet.getY());
-            renderer.text("" + planet.getHealth(), (int)planet.getX() + 60, (int)planet.getY() + 70, 1.0f);
+            int healthBarWidth = 20 + planet.getHealth();
+            renderer.drawHealthBar((int)(planet.getX()) - (healthBarWidth / 2), (int)planet.getY() - 100, healthBarWidth, 17);
         }
         renderer.draw("ship", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
         Vector2 boundPos = m_mainShip.getBindPoint();

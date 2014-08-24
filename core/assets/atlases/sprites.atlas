@@ -1,26 +1,34 @@
 
 sprites.png
-size: 968,504
+size: 1020,504
 format: RGBA8888
 filter: MipMapLinearLinear,Linear
 repeat: none
 asteroid
   rotate: false
-  xy: 908, 456
+  xy: 204, 154
   size: 48, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 958, 493
+  xy: 204, 141
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
   index: -1
+health
+  rotate: false
+  xy: 908, 486
+  size: 98, 18
+  split: 6, 6, 3, 3
+  orig: 98, 18
+  offset: 0, 0
+  index: -1
 invader
   rotate: false
-  xy: 204, 178
+  xy: 908, 460
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
@@ -55,7 +63,7 @@ ship
   index: -1
 target
   rotate: false
-  xy: 908, 442
+  xy: 1008, 492
   size: 12, 12
   orig: 12, 12
   offset: 0, 0

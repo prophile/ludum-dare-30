@@ -14,9 +14,9 @@ public class SpaceHams extends ApplicationAdapter {
 	
 	@Override
 	public void create () {
-	    m_renderer = new Renderer();
-        
 	    TextureAtlas atlas = new TextureAtlas("atlases/sprites.atlas");
+	    
+	    m_renderer = new Renderer(atlas.createPatch("health"));
 	    
 	    m_renderer.addSprite("target", atlas.findRegion("target"), 1.0f);
         m_renderer.addSprite("planet-1", atlas.findRegion("planet-1"), 0.5f);

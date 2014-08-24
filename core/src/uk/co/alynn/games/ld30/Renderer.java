@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -25,11 +26,17 @@ public class Renderer {
     private final ShapeRenderer m_shapeRenderer;
     private final BitmapFont m_font;
     private final Map<String, Sprite> m_sprites = new HashMap<String, Sprite>();
+    private final NinePatch m_health;
     
-    public Renderer() {
+    public Renderer(NinePatch health) {
         m_spriteBatch = new SpriteBatch();
         m_shapeRenderer = new ShapeRenderer();
         m_font = loadFont();
+        m_health = health;
+    }
+    
+    public void drawHealthBar(int x, int y, int w, int h) {
+        m_health.draw(m_spriteBatch, x, y, w, h);
     }
     
     private static BitmapFont loadFont() {
