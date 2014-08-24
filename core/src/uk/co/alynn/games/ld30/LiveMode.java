@@ -166,7 +166,7 @@ public class LiveMode implements GameMode {
     private void collideAdversariesWithBullets() {
         List<Adversary> retainedAdversaries = new ArrayList<Adversary>();
         for (Adversary adv : m_adversaries) {
-            Adversary advCurrent = adv;
+            Adversary advCurrent = adv.seePlayer(m_mainShip.getX(), m_mainShip.getY());
             List<Bullet> retainedBullets = new ArrayList<Bullet>();
             for (Bullet bullet : m_bullets) {
                 if (advCurrent != null && Math.hypot(adv.getX() - bullet.getX(), adv.getY() - bullet.getY()) < 15.0f) {

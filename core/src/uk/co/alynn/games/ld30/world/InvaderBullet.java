@@ -59,4 +59,9 @@ public class InvaderBullet implements Adversary {
         AudioEngine.get().play("invader-hit-planet");
         return null;
     }
+    
+    @Override
+    public Adversary seePlayer(float x, float y) {
+        return this;
+    }
 }

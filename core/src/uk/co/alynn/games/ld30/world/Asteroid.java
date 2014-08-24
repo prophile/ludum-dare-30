@@ -59,5 +59,10 @@ public class Asteroid implements Adversary {
     public Adversary hitPlanet(DamagePlanet damage) {
         return this;
     }
+    
+    @Override
+    public Adversary seePlayer(float x, float y) {
+        return this;
+    }
 
 }

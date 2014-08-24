@@ -47,6 +47,10 @@ public class WaveSpawner {
         AudioEngine.get().play("invader-warn");
     }
     
+    private void spawnDestroyer() {
+        spawn(new Destroyer(Gdx.graphics.getWidth() / 2, -30, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2, Constants.DESTROYER_INITIAL_COOLDOWN));
+    }
+    
     private void spawnWave(int waveID, List<Planet> planets) {
         int asteroidFrequency;
         if (waveID > 120) {
@@ -78,6 +82,9 @@ public class WaveSpawner {
             for (int i = 0; i < ninvaders; ++i) {
                 spawnInvaderTop(planets);
             }
+        }
+        if (waveID > 120 && waveID % 33 == 5) {
+            spawnDestroyer();
         }
     }
 }

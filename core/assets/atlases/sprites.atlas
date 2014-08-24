@@ -13,9 +13,16 @@ asteroid
   index: -1
 bullet
   rotate: false
-  xy: 908, 431
+  xy: 254, 165
   size: 10, 11
   orig: 10, 11
+  offset: 0, 0
+  index: -1
+destroyer
+  rotate: false
+  xy: 908, 410
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 explosion

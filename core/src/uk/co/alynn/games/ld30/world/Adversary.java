@@ -11,4 +11,5 @@ public interface Adversary {
     public Adversary hitBullet();
     public float getHeading();
     public Adversary hitPlanet(DamagePlanet damage);
+    public Adversary seePlayer(float x, float y);
 }
