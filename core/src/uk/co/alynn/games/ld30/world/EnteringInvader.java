@@ -26,7 +26,7 @@ public class EnteringInvader extends Invader {
             float newY = getY() + unitY*dt*Constants.SPEED_INVADER;
             return IterTools.just(new EnteringInvader(newX, newY, m_targetX, m_targetY));
         } else {
-            return IterTools.just(new HoldoffInvader(getX(), getY(), Constants.INVADER_HOLDOFF_TIME));
+            return IterTools.just(new HoldoffInvader(getX(), getY(), Constants.INVADER_HOLDOFF_TIME, m_targetX, m_targetY));
         }
     }
 }
