@@ -33,7 +33,7 @@ public class WaveSpawner {
     }
     
     private void spawnInvaderTop(List<Planet> planets) {
-        int targetPlanet = MathUtils.random(planets.size());
+        int targetPlanet = MathUtils.random(planets.size() - 1);
         Planet target = planets.get(targetPlanet);
         spawn(new EnteringInvader(MathUtils.random(20.0f, Gdx.graphics.getWidth() - 20.0f), Gdx.graphics.getHeight() + 15.0f, target.getX(), target.getY()));
     }
