@@ -20,6 +20,7 @@ public class LiveMode implements GameMode {
     private List<Planet> m_planets = new ArrayList<Planet>();
     private WaveSpawner m_waveSpawner;
     private boolean m_uded = false;
+    private final Tutorial m_tutorial = new Tutorial();
     
     public LiveMode() {
         m_planets.add(new Planet(300.0f, 300.0f));
@@ -32,6 +33,10 @@ public class LiveMode implements GameMode {
     }
     
     public GameMode update() {
+        m_tutorial.update(Gdx.graphics.getDeltaTime());
+        if (m_tutorial.isFinished()) {
+            spawnNewAdversaries();
+        }
         m_mainShip = m_mainShip.update(Gdx.graphics.getDeltaTime());
         updateBullets();
         
@@ -39,8 +44,6 @@ public class LiveMode implements GameMode {
         
         collideAdversariesWithBullets();
         collideAdversariesWithPlayer();
-        
-        spawnNewAdversaries();
         
         return m_uded ? new TitleMode("game-over-screen", Constants.DEATH_HOLDOFF_TIME) : this;
     }
@@ -61,14 +64,19 @@ public class LiveMode implements GameMode {
         for (Adversary adversary : m_adversaries) {
             renderer.draw(adversary.getImage(), (int)adversary.getX(), (int)adversary.getY(), adversary.getHeading());
         }
+        m_tutorial.render(renderer);
     }
     
     public void leftClick(int xTarget, int yTarget) {
+        if (m_tutorial.noBulletsYet()) {
+            return;
+        }
         float dx = xTarget - m_mainShip.getX();
         float dy = yTarget - m_mainShip.getY();
         // add bullet
         Bullet bullet = new Bullet(m_mainShip.getX(), m_mainShip.getY(), (float)Math.atan2(dy, dx));
         m_bullets.add(bullet);
+        m_tutorial.didShoot();
     }
     
     public void rightClick(int xTarget, int yTarget) {
@@ -90,12 +98,14 @@ public class LiveMode implements GameMode {
                     }
                     if (direction != 0) {
                         m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
+                        m_tutorial.didLatchToPlanet();
                     }
                     return;
                 }
             }
         } else {
             m_mainShip = m_mainShip.unbind();
+            m_tutorial.didUnlatch();
         }
     }
 
