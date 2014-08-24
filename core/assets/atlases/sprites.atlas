@@ -1,6 +1,6 @@
 
 sprites.png
-size: 956,1004
+size: 1006,1004
 format: RGBA8888
 filter: MipMapLinearLinear,Linear
 repeat: none
@@ -48,9 +48,9 @@ bullet
   index: -1
 destroyer
   rotate: false
-  xy: 916, 930
-  size: 32, 32
-  orig: 32, 32
+  xy: 591, 109
+  size: 250, 281
+  orig: 250, 281
   offset: 0, 0
   index: -1
 explosion
@@ -77,21 +77,21 @@ invader-0
   index: -1
 invader-1
   rotate: false
-  xy: 591, 164
+  xy: 591, 83
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
   index: -1
 invader-2
   rotate: false
-  xy: 793, 366
+  xy: 2, 2
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
   index: -1
 invader-3
   rotate: false
-  xy: 2, 2
+  xy: 958, 980
   size: 48, 24
   orig: 48, 24
   offset: 0, 0
@@ -117,17 +117,23 @@ planet-3
   orig: 300, 300
   offset: 0, 0
   index: -1
-ship
-  rotate: false
-  xy: 591, 190
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
 target
   rotate: false
-  xy: 102, 34
+  xy: 843, 378
   size: 12, 12
   orig: 12, 12
+  offset: 0, 0
+  index: -1
+
+sprites2.png
+size: 202,202
+format: RGBA8888
+filter: MipMapLinearLinear,Linear
+repeat: none
+ship
+  rotate: false
+  xy: 2, 2
+  size: 200, 200
+  orig: 200, 200
   offset: 0, 0
   index: -1
