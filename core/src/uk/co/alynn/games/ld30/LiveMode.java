@@ -7,7 +7,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 import uk.co.alynn.games.ld30.world.Adversary;
-import uk.co.alynn.games.ld30.world.Asteroid;
 import uk.co.alynn.games.ld30.world.Bullet;
 import uk.co.alynn.games.ld30.world.Constants;
 import uk.co.alynn.games.ld30.world.Planet;
