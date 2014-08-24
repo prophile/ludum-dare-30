@@ -15,6 +15,8 @@ public class AudioEngine {
         loadEffect("hit", "snare.wav");
         loadEffect("invader-warn", "meepmerp.wav");
         loadEffect("tractor", "tractor.wav");
+        loadEffect("invader-shoot", "dink.wav");
+        loadEffect("invader-hit-planet", "dop.wav");
     }
     
     private void loadEffect(String name, String file) {

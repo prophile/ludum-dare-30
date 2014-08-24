@@ -2,6 +2,7 @@ package uk.co.alynn.games.ld30.world;
 
 import java.util.Iterator;
 
+import uk.co.alynn.games.ld30.AudioEngine;
 import uk.co.alynn.games.ld30.IterTools;
 
 public class InvaderBullet implements Adversary {
@@ -55,6 +56,7 @@ public class InvaderBullet implements Adversary {
     @Override
     public Adversary hitPlanet(DamagePlanet damage) {
         damage.damage(Constants.INVADER_BULLET_DAMAGE);
+        AudioEngine.get().play("invader-hit-planet");
         return null;
     }
 }

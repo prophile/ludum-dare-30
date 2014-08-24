@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import uk.co.alynn.games.ld30.AudioEngine;
 import uk.co.alynn.games.ld30.IterTools;
 
 public class ShootingInvader extends Invader {
@@ -26,6 +27,7 @@ public class ShootingInvader extends Invader {
             List<Adversary> newEntities = new ArrayList<Adversary>();
             newEntities.add(new ShootingInvader(getX(), getY(), Constants.INVADER_SHOOT_PERIOD, m_targetX, m_targetY));
             newEntities.add(new InvaderBullet(getX(), getY(), (float)Math.atan2(m_targetY - getY(), m_targetX - getX())));
+            AudioEngine.get().play("invader-shoot");
             return newEntities.iterator();
         } else {
             return IterTools.just(new ShootingInvader(getX(), getY(), newCooldown, m_targetX, m_targetY));

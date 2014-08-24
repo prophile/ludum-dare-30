@@ -9,11 +9,11 @@ public final class Constants {
     public static final float SECONDS_PER_TICK = 1.0f;
     public static final float BIND_LIMIT = 5.0f;
     public static final float PLANET_BIND_RADIUS = 200.0f;
-    public static final float SPEED_INVADER = 50.0f;
+    public static final float SPEED_INVADER = 80.0f;
     public static final float INVADER_HOLDOFF = 180.0f;
-    public static final float INVADER_HOLDOFF_TIME = 4.0f;
+    public static final float INVADER_HOLDOFF_TIME = 2.0f;
     public static final float DEATH_HOLDOFF_TIME = 2.0f;
-    public static final float INVADER_SHOOT_PERIOD = 3.0f;
+    public static final float INVADER_SHOOT_PERIOD = 1.7f;
     public static final int INVADER_BULLET_DAMAGE = 5;
     public static final float PLANET_COLLIDE_RADIUS = 40.0f;
 }
