@@ -49,7 +49,9 @@ public class WaveSpawner {
     
     private void spawnWave(int waveID, List<Planet> planets) {
         int asteroidFrequency;
-        if (waveID > 60) {
+        if (waveID > 120) {
+            asteroidFrequency = 1;
+        } else if (waveID > 60) {
             asteroidFrequency = 2;
         } else if (waveID > 30) {
             asteroidFrequency = 4;
