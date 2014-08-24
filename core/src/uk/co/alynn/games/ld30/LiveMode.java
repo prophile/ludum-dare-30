@@ -28,7 +28,7 @@ public class LiveMode implements GameMode {
     public LiveMode() {
         m_planets.add(new Planet(300.0f, 300.0f, 100, "planet-1"));
         m_planets.add(new Planet(700.0f, 500.0f, 100, "planet-2"));
-        m_planets.add(new Planet(750.0f, 250.0f, 100, "planet-3"));
+        m_planets.add(new Planet(750.0f, 210.0f, 100, "planet-3"));
         
         m_mainShip = new PlayerShip(50.0f, 400.0f, 0.0f);
         
