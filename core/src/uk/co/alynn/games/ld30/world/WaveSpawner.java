@@ -81,7 +81,7 @@ public class WaveSpawner {
             maxInvaders = 1;
         }
         if (waveID % 13 == 6) {
-            int ninvaders = MathUtils.random(maxInvaders);
+            int ninvaders = MathUtils.random(1, maxInvaders);
             for (int i = 0; i < ninvaders; ++i) {
                 spawnInvaderTop(planets);
             }
