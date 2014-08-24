@@ -13,7 +13,7 @@ asteroid
   index: -1
 bullet
   rotate: false
-  xy: 204, 141
+  xy: 958, 473
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
@@ -26,9 +26,30 @@ health
   orig: 98, 18
   offset: 0, 0
   index: -1
-invader
+invader-0
   rotate: false
   xy: 908, 460
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+invader-1
+  rotate: false
+  xy: 204, 128
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+invader-2
+  rotate: false
+  xy: 254, 178
+  size: 48, 24
+  orig: 48, 24
+  offset: 0, 0
+  index: -1
+invader-3
+  rotate: false
+  xy: 908, 434
   size: 48, 24
   orig: 48, 24
   offset: 0, 0

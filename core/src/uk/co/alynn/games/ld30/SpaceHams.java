@@ -34,7 +34,10 @@ public class SpaceHams extends ApplicationAdapter {
         m_renderer.addSprite("game-over-screen", gameOverTexture, (float)Gdx.graphics.getWidth() / 1440.0f);
         
         m_renderer.addSprite("asteroid", atlas.findRegion("asteroid"), 1.0f);
-        m_renderer.addSprite("invader", atlas.findRegion("invader"), 1.0f);
+        m_renderer.addSprite("invader-0", atlas.findRegion("invader-0"), 1.0f);
+        m_renderer.addSprite("invader-1", atlas.findRegion("invader-1"), 1.0f);
+        m_renderer.addSprite("invader-2", atlas.findRegion("invader-2"), 1.0f);
+        m_renderer.addSprite("invader-3", atlas.findRegion("invader-3"), 1.0f);
         m_renderer.addSprite("ship", atlas.findRegion("ship"), 0.15f);
         m_renderer.addSprite("bullet", atlas.findRegion("bullet"), 0.4f);
 
@@ -103,6 +106,7 @@ public class SpaceHams extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+	    Animate.update(Gdx.graphics.getDeltaTime());
 	    GameMode nextMode = m_mode.update();
 	    m_renderer.frame(new Runnable() {
 

@@ -72,6 +72,10 @@ public class Renderer {
                      int x, int y,
                      float rotation) {
         Sprite sprite = m_sprites.get(image);
+        if (sprite == null) {
+            System.err.println("MISSING SPRITE: " + image);
+            throw new RuntimeException("COVERED IN BEES");
+        }
         TextureRegion rg = sprite.region;
         int regionWidth = rg.getRegionWidth();
         int regionHeight = rg.getRegionHeight();

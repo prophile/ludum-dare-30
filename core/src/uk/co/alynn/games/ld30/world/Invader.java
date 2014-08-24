@@ -2,6 +2,7 @@ package uk.co.alynn.games.ld30.world;
 
 import java.util.Iterator;
 
+import uk.co.alynn.games.ld30.Animate;
 import uk.co.alynn.games.ld30.AudioEngine;
 
 public abstract class Invader implements Adversary {
@@ -15,7 +16,7 @@ public abstract class Invader implements Adversary {
     
     @Override
     public String getImage() {
-        return "invader";
+        return Animate.animate("invader", 4, 0.05f);
     }
 
     @Override
