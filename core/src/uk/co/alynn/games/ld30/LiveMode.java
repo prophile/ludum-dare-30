@@ -96,6 +96,7 @@ public class LiveMode implements GameMode {
         }
         if (boundPos != null) {
             renderer.draw("target", (int)boundPos.x, (int)boundPos.y);
+            renderBindingWave(m_mainShip.getX(), m_mainShip.getY(), boundPos.x, boundPos.y, renderer);
         }
         for (Adversary adversary : m_adversaries) {
             renderer.draw(adversary.getImage(), (int)adversary.getX(), (int)adversary.getY(), adversary.getHeading());
@@ -103,6 +104,11 @@ public class LiveMode implements GameMode {
         m_tutorial.render(renderer);
     }
     
+    private void renderBindingWave(float x, float y, float x2, float y2,
+            Renderer renderer) {
+        renderer.bindingWave((int)x, (int)y, (int)x2, (int)y2);
+    }
+
     public void leftClick(int xTarget, int yTarget) {
         if (m_tutorial.noBulletsYet()) {
             return;

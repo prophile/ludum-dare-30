@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 
 public class Renderer {
@@ -20,11 +21,13 @@ public class Renderer {
     }
     
     private final SpriteBatch m_spriteBatch;
+    private final ShapeRenderer m_shapeRenderer;
     private final BitmapFont m_font;
     private final Map<String, Sprite> m_sprites = new HashMap<String, Sprite>();
     
     public Renderer() {
         m_spriteBatch = new SpriteBatch();
+        m_shapeRenderer = new ShapeRenderer();
         m_font = loadFont();
     }
     
@@ -80,5 +83,15 @@ public class Renderer {
                      float alpha) {
         m_font.setColor(1.0f, 1.0f, 1.0f, alpha);
         m_font.draw(m_spriteBatch, text, x, y);
+    }
+
+    public void bindingWave(int x, int y, int x2, int y2) {
+        // what nao
+        m_spriteBatch.end();
+        m_shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+        m_shapeRenderer.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        m_shapeRenderer.line(x, y, x2, y2);
+        m_shapeRenderer.end();
+        m_spriteBatch.begin();
     }
 }
