@@ -24,9 +24,9 @@ public class LiveMode implements GameMode {
     private final Tutorial m_tutorial = new Tutorial();
     
     public LiveMode() {
-        m_planets.add(new Planet(300.0f, 300.0f));
-        m_planets.add(new Planet(700.0f, 500.0f));
-        m_planets.add(new Planet(750.0f, 250.0f));
+        m_planets.add(new Planet(300.0f, 300.0f, 100));
+        m_planets.add(new Planet(700.0f, 500.0f, 100));
+        m_planets.add(new Planet(750.0f, 250.0f, 100));
         
         m_mainShip = new PlayerShip(50.0f, 400.0f, 0.0f);
         
@@ -53,6 +53,7 @@ public class LiveMode implements GameMode {
         renderer.draw("background", (int)(Gdx.graphics.getWidth() / 2), (int)(Gdx.graphics.getHeight() / 2));
         for (Planet planet : m_planets) {
             renderer.draw(planet.getSprite(), (int)planet.getX(), (int)planet.getY());
+            renderer.text("" + planet.getHealth(), (int)planet.getX() + 60, (int)planet.getY() + 70, 1.0f);
         }
         renderer.draw("ship", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
         Vector2 boundPos = m_mainShip.getBindPoint();
