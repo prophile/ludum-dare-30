@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -88,18 +89,20 @@ public class Renderer {
     public void bindingWave(int x, int y, int x2, int y2) {
         // what nao
         m_spriteBatch.end();
+        Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE);
+        Gdx.gl20.glEnable(GL20.GL_BLEND);
         m_shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        m_shapeRenderer.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-        final int FLANGE = 60;
+        Color beamColor = new Color(0.0f, 0.6f, 1.0f, 1.0f);
+        Color beamEnd = new Color(0.0f, 0.3f, 0.5f, 0.0f);
+        final float FLANGE = 0.15f;
         float xDiff = (float)(x2 - x);
         float yDiff = (float)(y2 - y);
-        float length = (float) Math.hypot(xDiff, yDiff);
-        xDiff /= length;
-        yDiff /= length;
         xDiff *= FLANGE;
         yDiff *= FLANGE;
-        m_shapeRenderer.triangle((int)x, (int)y, x2 + yDiff, y2 - xDiff, x2 - yDiff, y2 + xDiff);
+        m_shapeRenderer.triangle((int)x, (int)y, x2 + yDiff, y2 - xDiff, x2 - yDiff, y2 + xDiff, beamColor, beamEnd, beamEnd);
+        m_shapeRenderer.flush();
         m_shapeRenderer.end();
+        Gdx.gl20.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         m_spriteBatch.begin();
     }
 }
