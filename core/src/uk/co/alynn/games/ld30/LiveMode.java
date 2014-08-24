@@ -44,7 +44,7 @@ public class LiveMode implements GameMode {
         
         spawnNewAdversaries();
         
-        return m_uded ? new TitleMode("game-over-screen") : this;
+        return m_uded ? new TitleMode("game-over-screen", Constants.DEATH_HOLDOFF_TIME) : this;
     }
     
     public void render(Renderer renderer) {

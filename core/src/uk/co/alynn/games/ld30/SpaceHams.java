@@ -43,7 +43,7 @@ public class SpaceHams extends ApplicationAdapter {
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
         m_renderer.addSprite("background", bgTexture, 1.0f);
         
-        m_mode = new TitleMode("title-screen");
+        m_mode = new TitleMode("title-screen", 0.0f);
         
         Gdx.input.setInputProcessor(new InputProcessor() {
 

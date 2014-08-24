@@ -6,14 +6,19 @@ public class TitleMode implements GameMode {
 
     private GameMode m_next = this;
     private final String m_screen;
+    private final float m_holdoff;
     
-    public TitleMode(String screen) {
+    public TitleMode(String screen, float holdoff) {
         m_screen = screen;
+        m_holdoff = holdoff;
     }
     
     @Override
     public GameMode update() {
-        return m_next;
+        if (m_next != this) {
+            return m_next;
+        }
+        return new TitleMode(m_screen, m_holdoff - Gdx.graphics.getDeltaTime());
     }
 
     @Override
@@ -27,7 +32,9 @@ public class TitleMode implements GameMode {
     }
 
     private void start() {
-        m_next = new LiveMode();
+        if (m_holdoff < 0.0f) {
+            m_next = new LiveMode();
+        }
     }
 
     @Override
