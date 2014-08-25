@@ -49,6 +49,8 @@ public class LiveMode implements GameMode {
         collideAdversariesWithPlayer();
         collideAdversariesWithPlanets();
         
+        cullOutOfBoundsAdversaries();
+        
         m_tractorCheck -= Gdx.graphics.getDeltaTime();
         if (m_tractorCheck < 0.0f) {
             m_tractorCheck = 1.0f;
@@ -64,6 +66,26 @@ public class LiveMode implements GameMode {
         return m_uded ? new TitleMode("game-over-screen", Constants.DEATH_HOLDOFF_TIME) : this;
     }
     
+    private void cullOutOfBoundsAdversaries() {
+        List<Adversary> newAdversaries = new ArrayList<Adversary>();
+        final float LEFT_BOUND = -100.0f;
+        final float RIGHT_BOUND = Gdx.graphics.getWidth() + 100.0f;
+        final float TOP_BOUND = Gdx.graphics.getHeight() + 100.0f;
+        final float BOTTOM_BOUND = -100.0f;
+        for (Adversary adversary : m_adversaries) {
+            if (!(adversary.getX() > LEFT_BOUND))
+                continue;
+            if (!(adversary.getX() < RIGHT_BOUND))
+                continue;
+            if (!(adversary.getY() > BOTTOM_BOUND))
+                continue;
+            if (!(adversary.getY() < TOP_BOUND))
+                continue;
+            newAdversaries.add(adversary);
+        }
+        m_adversaries = newAdversaries;
+    }
+
     private void collideAdversariesWithPlanets() {
         for (int i = 0; i < m_planets.size(); ++i) {
             collideAdversariesWithPlanetByIndex(i);
