@@ -12,14 +12,22 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class SpaceHams extends ApplicationAdapter {
 	private Renderer m_renderer;
 	private GameMode m_mode;
 	
+	private Viewport m_viewport;
+	
 	@Override
 	public void create () {
 	    AudioEngine.get();
+	    
+	    m_viewport = new FitViewport(Constants.STANDARD_RES_WIDTH, Constants.STANDARD_RES_HEIGHT);
+	    m_viewport.update(Constants.STANDARD_RES_WIDTH, Constants.STANDARD_RES_HEIGHT);
 	    
 	    TextureAtlas atlas = new TextureAtlas("atlases/sprites.atlas");
 	    
@@ -113,6 +121,7 @@ public class SpaceHams extends ApplicationAdapter {
 
 	@Override
 	public void render () {
+	    m_viewport.apply();
 	    Animate.update(Gdx.graphics.getDeltaTime());
 	    m_mode.rightMouse(Gdx.input.isButtonPressed(Buttons.RIGHT), Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
 	    GameMode nextMode = m_mode.update();
@@ -129,14 +138,6 @@ public class SpaceHams extends ApplicationAdapter {
 	
 	@Override
 	public void resize(int w, int h) {
-	    Gdx.gl.glViewport(0, 0, w, h);
-	    Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-	    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Vector2 size = Scaling.fit.apply(Constants.STANDARD_RES_WIDTH, Constants.STANDARD_RES_HEIGHT, w, h);
-        int viewportX = (int)(w - size.x) / 2;
-        int viewportY = (int)(h - size.y) / 2;
-        int viewportWidth = (int)size.x;
-        int viewportHeight = (int)size.y;
-        Gdx.gl.glViewport(viewportX, viewportY, viewportWidth, viewportHeight);
+	    m_viewport.update(w, h);
 	}
 }

@@ -14,7 +14,8 @@ public class DesktopLauncher {
 		config.samples = 2;
 		config.vSyncEnabled = true;
 		config.title = "Space Hams";
-		config.resizable = false;
+		config.resizable = true;
+		config.fullscreen = false;
 		new LwjglApplication(new SpaceHams(), config);
 	}
 }
