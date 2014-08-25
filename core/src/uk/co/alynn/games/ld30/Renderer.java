@@ -42,7 +42,7 @@ public class Renderer {
     private static BitmapFont loadFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("font.ttf"));
         FreeTypeFontParameter parameter = new FreeTypeFontParameter();
-        parameter.size = 16;
+        parameter.size = 20;
         BitmapFont font = generator.generateFont(parameter);
         generator.dispose();
         return font;
@@ -93,6 +93,7 @@ public class Renderer {
     public void text(String text,
                      int x, int y,
                      float alpha) {
+        x -= (m_font.getBounds(text).width) / 2;
         m_font.setColor(1.0f, 1.0f, 1.0f, alpha);
         m_font.draw(m_spriteBatch, text, x, y);
     }

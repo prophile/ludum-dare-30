@@ -1,5 +1,7 @@
 package uk.co.alynn.games.ld30;
 
+import com.badlogic.gdx.Gdx;
+
 public class Tutorial {
     private int m_tutorialStage = 0;
     private float m_timeSinceSwitch = 0.0f;
@@ -83,7 +85,7 @@ public class Tutorial {
             displayedText = "";
             break;
         }
-        renderer.text(displayedText, 10, 16, alpha);
+        renderer.text(displayedText, Gdx.graphics.getWidth() / 2, (1 * Gdx.graphics.getHeight()) / 4, alpha);
     }
 
 }
