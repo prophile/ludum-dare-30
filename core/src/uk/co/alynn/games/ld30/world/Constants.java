@@ -24,4 +24,6 @@ public final class Constants {
     
     public static final int STANDARD_RES_WIDTH = 1152;
     public static final int STANDARD_RES_HEIGHT = 720;
+    
+    public static final int STARTING_WAVE = 1;
 }

@@ -23,7 +23,7 @@ public class LiveMode implements GameMode {
     private final Tutorial m_tutorial = new Tutorial();
     private float m_tractorCheck = 0.5f;
     
-    private int m_wave = 1;
+    private int m_wave = Constants.STARTING_WAVE;
     private int m_queuedTick = -2;
     private float m_waveTime = -2.0f;
     
