@@ -17,6 +17,7 @@ public class TitleMode implements GameMode {
     
     @Override
     public GameMode update() {
+        AudioEngine.get().selectTitleMusic();
         if (m_next != this) {
             return m_next;
         }

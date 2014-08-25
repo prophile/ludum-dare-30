@@ -38,6 +38,8 @@ public class LiveMode implements GameMode {
     }
     
     public GameMode update() {
+        AudioEngine.get().selectMainMusic();
+        
         m_tutorial.update(Gdx.graphics.getDeltaTime());
         if (m_tutorial.isFinished()) {
             spawnNewAdversaries();

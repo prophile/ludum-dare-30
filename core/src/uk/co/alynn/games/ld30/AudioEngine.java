@@ -11,6 +11,9 @@ public class AudioEngine {
     private final Map<String, Sound> m_fx = new HashMap<String, Sound>();
     private static AudioEngine s_sharedEngine = null;
     
+    private final Music m_mainMusic;
+    private final Music m_titleMusic;
+    
     public AudioEngine() {
         loadEffect("shoot", "kick.wav");
         loadEffect("hit", "snare.wav");
@@ -24,10 +27,27 @@ public class AudioEngine {
         loadEffect("player-die", "dashed.wav");
         loadEffect("player-respawn", "respawn.wav");
         
-        Music mainMusic = Gdx.audio.newMusic(Gdx.files.internal("music/main.ogg"));
-        mainMusic.setLooping(true);
-        mainMusic.setVolume(0.4f);
-        mainMusic.play();
+        m_mainMusic = Gdx.audio.newMusic(Gdx.files.internal("music/main.ogg"));
+        m_mainMusic.setLooping(true);
+        m_mainMusic.setVolume(0.2f);
+        
+        m_titleMusic = Gdx.audio.newMusic(Gdx.files.internal("music/titles.ogg"));
+        m_titleMusic.setLooping(true);
+        m_titleMusic.setVolume(0.2f);
+    }
+    
+    public void selectTitleMusic() {
+        if (m_titleMusic.isPlaying())
+            return;
+        m_mainMusic.stop();
+        m_titleMusic.play();
+    }
+    
+    public void selectMainMusic() {
+        if (m_mainMusic.isPlaying())
+            return;
+        m_titleMusic.stop();
+        m_mainMusic.play();
     }
     
     private void loadEffect(String name, String file) {
