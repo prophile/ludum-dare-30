@@ -13,17 +13,19 @@ import uk.co.alynn.games.ld30.world.Constants;
 import uk.co.alynn.games.ld30.world.DamagePlanet;
 import uk.co.alynn.games.ld30.world.Planet;
 import uk.co.alynn.games.ld30.world.PlayerShip;
-import uk.co.alynn.games.ld30.world.WaveSpawner;
 
 public class LiveMode implements GameMode {
     private PlayerShip m_mainShip;
     private List<Bullet> m_bullets = new ArrayList<Bullet>();
     private List<Adversary> m_adversaries = new ArrayList<Adversary>();
     private List<Planet> m_planets = new ArrayList<Planet>();
-    private WaveSpawner m_waveSpawner;
     private boolean m_uded = false;
     private final Tutorial m_tutorial = new Tutorial();
     private float m_tractorCheck = 0.5f;
+    
+    private int m_wave = 1;
+    private int m_queuedTick = -2;
+    private float m_waveTime = -2.0f;
     
     public LiveMode() {
         m_planets.add(new Planet(300.0f, 300.0f, 100, "planet-1"));
@@ -31,8 +33,6 @@ public class LiveMode implements GameMode {
         m_planets.add(new Planet(750.0f, 210.0f, 100, "planet-3"));
         
         m_mainShip = new PlayerShip(50.0f, 400.0f, 0.0f);
-        
-        m_waveSpawner = new WaveSpawner();
     }
     
     public GameMode update() {
@@ -115,6 +115,18 @@ public class LiveMode implements GameMode {
             renderer.draw(adversary.getImage(), (int)adversary.getX(), (int)adversary.getY(), adversary.getHeading());
         }
         m_tutorial.render(renderer);
+        // WAVE indicator
+        float waveAlpha = 0.0f;
+        if (m_waveTime < 0.5f) {
+            waveAlpha = m_waveTime / 0.5f;
+        } else if (m_waveTime < 2.5f) {
+            waveAlpha = 1.0f;
+        } else if (m_waveTime < 3f) {
+            waveAlpha = 1.0f - ((m_waveTime - 2.5f) / 0.5f);
+        }
+        if (waveAlpha > 0.0f) {
+            renderer.text("Wave " + m_wave, Gdx.graphics.getWidth() / 2, (2 * Gdx.graphics.getHeight()) / 3, waveAlpha);
+        }
     }
     
     private void renderBindingWave(float x, float y, float x2, float y2,
@@ -216,9 +228,17 @@ public class LiveMode implements GameMode {
     }
 
     private void spawnNewAdversaries() {
-        for (Adversary adv : m_waveSpawner.update(Gdx.graphics.getDeltaTime(), m_planets)) {
-            m_adversaries.add(adv);
+        float dt = Gdx.graphics.getDeltaTime();
+        m_waveTime += dt;
+        int waveTick = (int)(m_waveTime / Constants.SECONDS_PER_TICK);
+        Wave wave = WaveData.getWave(m_wave);
+        boolean endable = false;
+        while (m_queuedTick < waveTick) {
+            // spawning logic
+            endable = wave.dispatch(m_planets, m_adversaries, m_queuedTick++);
         }
+        // ending logic
+        // TODO: implement me
     }
 
     private void updateAdversaries() {
