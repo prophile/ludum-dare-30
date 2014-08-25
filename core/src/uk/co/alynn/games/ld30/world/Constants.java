@@ -14,7 +14,7 @@ public final class Constants {
     public static final float INVADER_HOLDOFF_TIME = 2.0f;
     public static final float DEATH_HOLDOFF_TIME = 2.0f;
     public static final float INVADER_SHOOT_PERIOD = 1.7f;
-    public static final int INVADER_BULLET_DAMAGE = 5;
+    public static final int INVADER_BULLET_DAMAGE = 2;
     public static final float PLANET_COLLIDE_RADIUS = 40.0f;
     public static final float BULLET_FLIGHT_TIME = 0.6f;
     public static final float SPEED_DESTROYER = SPEED - 40.0f;
@@ -26,5 +26,5 @@ public final class Constants {
     public static final int STANDARD_RES_HEIGHT = 720;
     
     public static final int STARTING_WAVE = 1;
-    public static final float SHIP_DEAD_TIME = 7.0f;
+    public static final float SHIP_DEAD_TIME = 5.0f;
 }
