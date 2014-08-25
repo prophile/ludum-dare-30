@@ -18,7 +18,7 @@ public class Asteroid implements Adversary {
     
     @Override
     public String getImage() {
-        return Animate.animate("asteroid", 5, 0.1f);
+        return Animate.animate("asteroid", 25, 0.1f);
     }
 
     @Override
