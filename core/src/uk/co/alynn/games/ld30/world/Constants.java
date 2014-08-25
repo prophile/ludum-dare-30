@@ -26,5 +26,5 @@ public final class Constants {
     public static final int STANDARD_RES_HEIGHT = 720;
     
     public static final int STARTING_WAVE = 1;
-    public static final float SHIP_DEAD_TIME = 6.0f;
+    public static final float SHIP_DEAD_TIME = 7.0f;
 }

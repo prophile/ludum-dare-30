@@ -17,7 +17,7 @@ public class DeadPlayerShip extends PlayerShip {
             AudioEngine.get().play("player-respawn");
             return new PlayerShip(Constants.STANDARD_RES_WIDTH / 3, Constants.STANDARD_RES_HEIGHT / 2, 0);
         } else {
-            return new DeadPlayerShip(newTimer - dt);
+            return new DeadPlayerShip(newTimer);
         }
     }
     
