@@ -13,7 +13,7 @@ public class DesktopLauncher {
 		config.height = Constants.STANDARD_RES_HEIGHT;
 		config.samples = 2;
 		config.vSyncEnabled = true;
-		config.title = "Space Hams";
+		config.title = "Border Patrol";
 		config.resizable = true;
 		config.fullscreen = false;
 		new LwjglApplication(new SpaceHams(), config);
