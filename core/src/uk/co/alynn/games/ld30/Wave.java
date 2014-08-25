@@ -23,7 +23,7 @@ public abstract class Wave {
         return percent*0.01f*Constants.STANDARD_RES_HEIGHT;
     }
     
-    public final boolean dispatch(List<Planet> planets, List<Adversary> adversaries, int tick) {
+    public boolean dispatch(List<Planet> planets, List<Adversary> adversaries, int tick) {
         m_planets = planets;
         m_adversaries = adversaries;
         m_spawnedDangerousEnemy = false;

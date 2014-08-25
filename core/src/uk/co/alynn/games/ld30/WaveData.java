@@ -137,42 +137,19 @@ public abstract class WaveData {
             if (wave % 5 == 0) {
                 return spawnGenericBossWave((wave / 5) - 1);
             } else {
-                return spawnGenericWave((wave - 5) / 5);
+                return spawnGenericWave(wave);
             }
         }
     }
 
-    private static Wave spawnGenericWave(int i) {
-        final int difficulty = i + 1;
-        return new Wave() {
-            @Override
-            protected boolean tick(int tick) {
-                if (tick == 0)
-                    return false;
-                if (tick > difficulty*3)
-                    return true;
-                if (tick == 6) {
-                    while (MathUtils.random(2) == 1) {
-                        spawnDestroyer((float)MathUtils.random(0, 100), -5.0f);
-                    }
-                }
-                if (tick % 3 == 0) {
-                    for (int i = 0; i < 2; ++i) {
-                        spawnInvader((float)MathUtils.random(0, 100), 105.0f, MathUtils.random(2));
-                    }
-                } else {
-                    int nasteroids = MathUtils.random(difficulty);
-                    for (int i = 0; i < nasteroids; ++i) {
-                        if (MathUtils.random(1) == 1) {
-                            spawnAsteroid(-5.0f, MathUtils.random(0.0f, 100.0f), MathUtils.random(-50.0f, 50.0f));
-                        } else {
-                            spawnAsteroid(105.0f, MathUtils.random(0.0f, 100.0f), MathUtils.random(130.0f, 230.0f));
-                        }
-                    }
-                }
-                return false;
-            }
-        };
+    private static Wave spawnGenericWave(int number) {
+        int randomNumberLCG = (number * 1103515245) + 12345;
+        if (randomNumberLCG < 0) {
+            randomNumberLCG = -randomNumberLCG;
+        }
+        int lower1 = 1 + (randomNumberLCG % (number - 2));
+        int lower2 = number - lower1;
+        return new SuperimposedWave(getWave(lower1), getWave(lower2));
     }
 
     private static Wave spawnGenericBossWave(final int difficulty) {
