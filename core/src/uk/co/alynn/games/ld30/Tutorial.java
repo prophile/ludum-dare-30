@@ -79,7 +79,7 @@ public class Tutorial {
             displayedText = "Left-click to shoot";
             break;
         case 3:
-            displayedText = "Destroy things that move. Good luck!";
+            displayedText = "Protect these worlds. Good luck!";
             break;
         default:
             displayedText = "";
