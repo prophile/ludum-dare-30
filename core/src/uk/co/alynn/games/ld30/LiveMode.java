@@ -63,6 +63,7 @@ public class LiveMode implements GameMode {
         
         if (m_uded) {
             AudioEngine.get().play("game-over");
+            AudioEngine.get().stopAll("tractor");
         }
         
         return m_uded ? new TitleMode("game-over-screen", Constants.DEATH_HOLDOFF_TIME) : this;
@@ -250,6 +251,8 @@ public class LiveMode implements GameMode {
                         //m_uded = true; // NOT TODAY
                         retainedAdversaries.add(new Wreckage(m_mainShip.getX(), m_mainShip.getY(), 0.0f));
                         m_mainShip = new DeadPlayerShip(Constants.SHIP_DEAD_TIME);
+                        AudioEngine.get().play("player-die");
+                        AudioEngine.get().stopAll("tractor");
                     }
                     
                 });
