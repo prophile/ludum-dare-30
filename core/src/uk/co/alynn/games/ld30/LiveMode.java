@@ -28,9 +28,9 @@ public class LiveMode implements GameMode {
     private float m_waveTime = -2.0f;
     
     public LiveMode() {
-        m_planets.add(new Planet(300.0f, 300.0f, 100, "planet-1"));
-        m_planets.add(new Planet(700.0f, 500.0f, 100, "planet-2"));
-        m_planets.add(new Planet(750.0f, 210.0f, 100, "planet-3"));
+        m_planets.add(new Planet(0.293f*Gdx.graphics.getWidth(), 0.391f*Gdx.graphics.getHeight(), 100, "planet-1"));
+        m_planets.add(new Planet(0.684f*Gdx.graphics.getWidth(), 0.651f*Gdx.graphics.getHeight(), 100, "planet-2"));
+        m_planets.add(new Planet(0.732f*Gdx.graphics.getWidth(), 0.273f*Gdx.graphics.getHeight(), 100, "planet-3"));
         
         m_mainShip = new PlayerShip(50.0f, 400.0f, 0.0f);
     }
