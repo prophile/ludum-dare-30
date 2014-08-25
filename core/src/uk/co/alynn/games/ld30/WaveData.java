@@ -23,6 +23,33 @@ public abstract class WaveData {
                 }
                 
             };
+        case 2:
+            return new Wave() {
+                
+                @Override
+                protected boolean tick(int tick) {
+                    switch (tick) {
+                    case 2:
+                        spawnAsteroid(-5, 60, 10);
+                        break;
+                    case 3:
+                        spawnAsteroid(-5, 10, 50);
+                        spawnAsteroid(105, 70, 160);
+                        break;
+                    case 5:
+                        spawnAsteroid(105, 10, 135);
+                        spawnAsteroid(105, 100, 210);
+                        break;
+                    case 8:
+                        spawnInvader(25, 105, 1);
+                        spawnInvader(75, 105, 0);
+                        spawnAsteroid(-5, 70, -20);
+                        break;
+                    }
+                    return tick >= 8;
+                }
+                
+            };
         default:
             return new Wave() {
                 @Override
