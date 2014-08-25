@@ -41,16 +41,13 @@ public class SpaceHams extends ApplicationAdapter {
         m_renderer.addSprite("planet-2", atlas.findRegion("planet-2"), 0.5f);
         m_renderer.addSprite("planet-3", atlas.findRegion("planet-3"), 0.5f);
         
-        float screenScale = Math.min(Constants.STANDARD_RES_WIDTH / 1440.0f,
-                                     Constants.STANDARD_RES_HEIGHT / 1080.0f);
-        
         Texture titleTexture = new Texture(Gdx.files.internal("title.png"), true);
         titleTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
-        m_renderer.addSprite("title-screen", titleTexture, screenScale);
+        m_renderer.addSprite("title-screen", titleTexture, 1.0f);
         
         Texture gameOverTexture = new Texture(Gdx.files.internal("game-over.png"), true);
         gameOverTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
-        m_renderer.addSprite("game-over-screen", gameOverTexture, screenScale);
+        m_renderer.addSprite("game-over-screen", gameOverTexture, 1.0f);
         
         for (int i = 0; i < 25; ++i) {
             m_renderer.addSprite("asteroid-" + i,
