@@ -61,7 +61,7 @@ public class SpaceHams extends ApplicationAdapter {
         m_renderer.addSprite("ship", atlas.findRegion("ship"), 0.15f);
         m_renderer.addSprite("bang", atlas.findRegion("explosion"), 1.0f);
         m_renderer.addSprite("bullet", atlas.findRegion("bullet"), 0.4f);
-        m_renderer.addSprite("destroyer", atlas.findRegion("destroyer"), 0.1f);
+        m_renderer.addSprite("destroyer", atlas.findRegion("destroyer"), 0.18f);
 
         Texture bgTexture = new Texture(Gdx.files.internal("background.png"), true);
         bgTexture.setFilter(TextureFilter.MipMapLinearLinear, TextureFilter.Linear);
