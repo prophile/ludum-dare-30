@@ -13,7 +13,7 @@ public class DesktopLauncher {
 		config.height = Constants.STANDARD_RES_HEIGHT;
 		config.samples = 2;
 		config.vSyncEnabled = true;
-		config.title = "Border Patrol";
+		config.title = "Intergalactopol";
 		config.resizable = true;
 		config.fullscreen = System.getProperty("os.name").equals("Mac OS X");
 		new LwjglApplication(new SpaceHams(), config);
