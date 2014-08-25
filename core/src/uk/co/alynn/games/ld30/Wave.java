@@ -45,10 +45,12 @@ public abstract class Wave {
     
     protected final void spawnInvader(float xP, float yP, int targetPlanet) {
         Planet tPlanet = m_planets.get(targetPlanet);
+        m_spawnedDangerousEnemy = true;
         spawn(new EnteringInvader(x(xP), y(yP), tPlanet.getX(), tPlanet.getY()));
     }
     
     protected final void spawnDestroyer(float xP, float yP) {
+        m_spawnedDangerousEnemy = true;
         spawn(new Destroyer(x(xP), y(yP), x(50), y(50), false, Constants.DESTROYER_INITIAL_COOLDOWN));
     }
     
