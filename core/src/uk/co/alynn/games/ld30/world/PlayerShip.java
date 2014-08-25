@@ -24,6 +24,10 @@ public class PlayerShip {
         return m_y;
     }
     
+    public boolean isPhantom() {
+        return false;
+    }
+    
     public float getHeading() {
         return m_heading;
     }

@@ -11,8 +11,10 @@ import uk.co.alynn.games.ld30.world.Adversary;
 import uk.co.alynn.games.ld30.world.Bullet;
 import uk.co.alynn.games.ld30.world.Constants;
 import uk.co.alynn.games.ld30.world.DamagePlanet;
+import uk.co.alynn.games.ld30.world.DeadPlayerShip;
 import uk.co.alynn.games.ld30.world.Planet;
 import uk.co.alynn.games.ld30.world.PlayerShip;
+import uk.co.alynn.games.ld30.world.Wreckage;
 
 public class LiveMode implements GameMode {
     private PlayerShip m_mainShip;
@@ -125,7 +127,8 @@ public class LiveMode implements GameMode {
             int healthBarWidth = 20 + planet.getHealth();
             renderer.drawHealthBar((int)(planet.getX()) - (healthBarWidth / 2), (int)planet.getY() - 100, healthBarWidth, 17);
         }
-        renderer.draw("ship", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
+        if (!m_mainShip.isPhantom())
+            renderer.draw("ship", (int)m_mainShip.getX(), (int)m_mainShip.getY(), m_mainShip.getHeading());
         Vector2 boundPos = m_mainShip.getBindPoint();
         for (Bullet bullet : m_bullets) {
             renderer.draw("bullet", (int)bullet.getX(), (int)bullet.getY());
@@ -157,7 +160,7 @@ public class LiveMode implements GameMode {
     }
 
     public void leftClick(int xTarget, int yTarget) {
-        if (m_tutorial.noBulletsYet()) {
+        if (m_tutorial.noBulletsYet() || m_mainShip.isPhantom()) {
             return;
         }
         float dx = xTarget - m_mainShip.getX();
@@ -170,6 +173,8 @@ public class LiveMode implements GameMode {
     }
     
     public void rightMouse(boolean down, int xTarget, int yTarget) {
+        if (m_mainShip.isPhantom())
+            return;
         if (down) {
             // calculate direction
             for (Planet planet : m_planets) {
@@ -208,7 +213,12 @@ public class LiveMode implements GameMode {
     private void collideAdversariesWithBullets() {
         List<Adversary> retainedAdversaries = new ArrayList<Adversary>();
         for (Adversary adv : m_adversaries) {
-            Adversary advCurrent = adv.seePlayer(m_mainShip.getX(), m_mainShip.getY());
+            Adversary advCurrent;
+            if (m_mainShip.isPhantom()) {
+                advCurrent = adv;
+            } else {
+                advCurrent = adv.seePlayer(m_mainShip.getX(), m_mainShip.getY());
+            }
             List<Bullet> retainedBullets = new ArrayList<Bullet>();
             for (Bullet bullet : m_bullets) {
                 if (advCurrent != null && Math.hypot(adv.getX() - bullet.getX(), adv.getY() - bullet.getY()) < 15.0f) {
@@ -226,7 +236,9 @@ public class LiveMode implements GameMode {
     }
     
     private void collideAdversariesWithPlayer() {
-        List<Adversary> retainedAdversaries = new ArrayList<Adversary>();
+        if (m_mainShip.isPhantom())
+            return;
+        final List<Adversary> retainedAdversaries = new ArrayList<Adversary>();
         for (Adversary adv : m_adversaries) {
             if (Math.hypot(adv.getX() - m_mainShip.getX(), adv.getY() - m_mainShip.getY()) < 35.0f) {
                 // do the collision dance
@@ -234,8 +246,10 @@ public class LiveMode implements GameMode {
 
                     @Override
                     public void run() {
-                        System.err.println("GAME OVER MAN");
-                        m_uded = true;
+                        System.err.println("ASPLODE");
+                        //m_uded = true; // NOT TODAY
+                        retainedAdversaries.add(new Wreckage(m_mainShip.getX(), m_mainShip.getY(), 0.0f));
+                        m_mainShip = new DeadPlayerShip(Constants.SHIP_DEAD_TIME);
                     }
                     
                 });
@@ -246,7 +260,9 @@ public class LiveMode implements GameMode {
                 retainedAdversaries.add(adv);
             }
         }
+        
         m_adversaries = retainedAdversaries;
+        
     }
 
     private void spawnNewAdversaries() {

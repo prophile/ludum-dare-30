@@ -49,7 +49,7 @@ public abstract class Wave {
     }
     
     protected final void spawnDestroyer(float xP, float yP) {
-        spawn(new Destroyer(x(xP), y(yP), x(50), y(50), Constants.DESTROYER_INITIAL_COOLDOWN));
+        spawn(new Destroyer(x(xP), y(yP), x(50), y(50), false, Constants.DESTROYER_INITIAL_COOLDOWN));
     }
     
     abstract protected boolean tick(int tick);

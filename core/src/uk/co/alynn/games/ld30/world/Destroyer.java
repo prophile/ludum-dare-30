@@ -10,13 +10,15 @@ public class Destroyer implements Adversary {
     private final float m_x, m_y;
     private final float m_playerX, m_playerY;
     private final float m_cooldown;
+    private final boolean m_seenPlayer;
     
-    public Destroyer(float x, float y, float px, float py, float cooldown) {
+    public Destroyer(float x, float y, float px, float py, boolean seenPlayer, float cooldown) {
         m_x = x;
         m_y = y;
         m_playerX = px;
         m_playerY = py;
         m_cooldown = cooldown;
+        m_seenPlayer = seenPlayer;
     }
 
     @Override
@@ -45,12 +47,12 @@ public class Destroyer implements Adversary {
         float x_ = getX() + diffX*dt*Constants.SPEED_DESTROYER;
         float y_ = getY() + diffY*dt*Constants.SPEED_DESTROYER;
         float cooldown_ = m_cooldown - dt;
-        if (cooldown_ <= 0) {
+        if (cooldown_ <= 0 && m_seenPlayer) {
             cooldown_ = Constants.DESTROYER_LATER_COOLDOWN;
             AudioEngine.get().play("invader-shoot");
             nextAdversaries.add(new InvaderBullet(getX(), getY(), getHeading()));
         }
-        nextAdversaries.add(new Destroyer(x_, y_, m_playerX, m_playerY, cooldown_));
+        nextAdversaries.add(new Destroyer(x_, y_, 0.5f* Constants.STANDARD_RES_WIDTH, Constants.STANDARD_RES_HEIGHT + 150.0f, false, cooldown_));
         return nextAdversaries.iterator();
     }
 
@@ -78,7 +80,7 @@ public class Destroyer implements Adversary {
 
     @Override
     public Adversary seePlayer(float x, float y) {
-        return new Destroyer(getX(), getY(), x, y, m_cooldown);
+        return new Destroyer(getX(), getY(), x, y, true, m_cooldown);
     }
     
 }
