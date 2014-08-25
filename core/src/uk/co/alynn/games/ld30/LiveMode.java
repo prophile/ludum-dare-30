@@ -156,8 +156,8 @@ public class LiveMode implements GameMode {
                         if (m_mainShip.getBindPoint() == null) {
                             m_tutorial.didLatchToPlanet();
                             AudioEngine.get().play("tractor");
+                            m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
                         }
-                        m_mainShip = m_mainShip.bind(xTarget, yTarget, direction);
                     }
                     return;
                 }
