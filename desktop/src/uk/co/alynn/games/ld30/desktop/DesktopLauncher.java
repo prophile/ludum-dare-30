@@ -15,7 +15,7 @@ public class DesktopLauncher {
 		config.vSyncEnabled = true;
 		config.title = "Border Patrol";
 		config.resizable = true;
-		config.fullscreen = false;
+		config.fullscreen = true;
 		new LwjglApplication(new SpaceHams(), config);
 	}
 }
