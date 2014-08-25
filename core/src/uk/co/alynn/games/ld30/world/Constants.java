@@ -21,4 +21,7 @@ public final class Constants {
     public static final float DESTROYER_INITIAL_COOLDOWN = 0.6f;
     public static final float DESTROYER_LATER_COOLDOWN = 0.4f;
     public static final boolean ENABLE_FPS = false;
+    
+    public static final int STANDARD_RES_WIDTH = 1152;
+    public static final int STANDARD_RES_HEIGHT = 720;
 }

@@ -1,5 +1,7 @@
 package uk.co.alynn.games.ld30;
 
+import uk.co.alynn.games.ld30.world.Constants;
+
 import com.badlogic.gdx.Gdx;
 
 public class TitleMode implements GameMode {
@@ -23,7 +25,7 @@ public class TitleMode implements GameMode {
 
     @Override
     public void render(Renderer renderer) {
-        renderer.draw(m_screen, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        renderer.draw(m_screen, Constants.STANDARD_RES_WIDTH / 2, Constants.STANDARD_RES_HEIGHT / 2);
     }
 
     @Override

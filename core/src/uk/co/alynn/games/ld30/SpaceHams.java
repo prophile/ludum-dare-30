@@ -1,12 +1,17 @@
 package uk.co.alynn.games.ld30;
 
+import uk.co.alynn.games.ld30.world.Constants;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Scaling;
 
 public class SpaceHams extends ApplicationAdapter {
 	private Renderer m_renderer;
@@ -120,5 +125,18 @@ public class SpaceHams extends ApplicationAdapter {
 	        
 	    });
 	    m_mode = nextMode;
+	}
+	
+	@Override
+	public void resize(int w, int h) {
+	    Gdx.gl.glViewport(0, 0, w, h);
+	    Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	    Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        Vector2 size = Scaling.fit.apply(Constants.STANDARD_RES_WIDTH, Constants.STANDARD_RES_HEIGHT, w, h);
+        int viewportX = (int)(w - size.x) / 2;
+        int viewportY = (int)(h - size.y) / 2;
+        int viewportWidth = (int)size.x;
+        int viewportHeight = (int)size.y;
+        Gdx.gl.glViewport(viewportX, viewportY, viewportWidth, viewportHeight);
 	}
 }

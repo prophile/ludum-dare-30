@@ -28,9 +28,9 @@ public class LiveMode implements GameMode {
     private float m_waveTime = -2.0f;
     
     public LiveMode() {
-        m_planets.add(new Planet(0.293f*Gdx.graphics.getWidth(), 0.391f*Gdx.graphics.getHeight(), 100, "planet-1"));
-        m_planets.add(new Planet(0.684f*Gdx.graphics.getWidth(), 0.651f*Gdx.graphics.getHeight(), 100, "planet-2"));
-        m_planets.add(new Planet(0.732f*Gdx.graphics.getWidth(), 0.273f*Gdx.graphics.getHeight(), 100, "planet-3"));
+        m_planets.add(new Planet(0.293f*Constants.STANDARD_RES_WIDTH, 0.391f*Constants.STANDARD_RES_HEIGHT, 100, "planet-1"));
+        m_planets.add(new Planet(0.684f*Constants.STANDARD_RES_WIDTH, 0.651f*Constants.STANDARD_RES_HEIGHT, 100, "planet-2"));
+        m_planets.add(new Planet(0.732f*Constants.STANDARD_RES_WIDTH, 0.273f*Constants.STANDARD_RES_HEIGHT, 100, "planet-3"));
         
         m_mainShip = new PlayerShip(50.0f, 400.0f, 0.0f);
     }
@@ -69,8 +69,8 @@ public class LiveMode implements GameMode {
     private void cullOutOfBoundsAdversaries() {
         List<Adversary> newAdversaries = new ArrayList<Adversary>();
         final float LEFT_BOUND = -100.0f;
-        final float RIGHT_BOUND = Gdx.graphics.getWidth() + 100.0f;
-        final float TOP_BOUND = Gdx.graphics.getHeight() + 100.0f;
+        final float RIGHT_BOUND = Constants.STANDARD_RES_WIDTH + 100.0f;
+        final float TOP_BOUND = Constants.STANDARD_RES_HEIGHT + 100.0f;
         final float BOTTOM_BOUND = -100.0f;
         for (Adversary adversary : m_adversaries) {
             if (!(adversary.getX() > LEFT_BOUND))
@@ -119,7 +119,7 @@ public class LiveMode implements GameMode {
     }
 
     public void render(Renderer renderer) {
-        renderer.draw("background", (int)(Gdx.graphics.getWidth() / 2), (int)(Gdx.graphics.getHeight() / 2));
+        renderer.draw("background", (int)(Constants.STANDARD_RES_WIDTH / 2), (int)(Constants.STANDARD_RES_HEIGHT / 2));
         for (Planet planet : m_planets) {
             renderer.draw(planet.getSprite(), (int)planet.getX(), (int)planet.getY());
             int healthBarWidth = 20 + planet.getHealth();
@@ -147,7 +147,7 @@ public class LiveMode implements GameMode {
             waveAlpha = 1.0f - ((m_waveTime - 2.5f) / 0.5f);
         }
         if (waveAlpha > 0.0f) {
-            renderer.text("Wave " + m_wave, Gdx.graphics.getWidth() / 2, (2 * Gdx.graphics.getHeight()) / 3, waveAlpha);
+            renderer.text("Wave " + m_wave, Constants.STANDARD_RES_WIDTH / 2, (2 * Constants.STANDARD_RES_HEIGHT) / 3, waveAlpha);
         }
     }
     

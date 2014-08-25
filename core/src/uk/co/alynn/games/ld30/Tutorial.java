@@ -1,6 +1,6 @@
 package uk.co.alynn.games.ld30;
 
-import com.badlogic.gdx.Gdx;
+import uk.co.alynn.games.ld30.world.Constants;
 
 public class Tutorial {
     private int m_tutorialStage = 0;
@@ -85,7 +85,7 @@ public class Tutorial {
             displayedText = "";
             break;
         }
-        renderer.text(displayedText, Gdx.graphics.getWidth() / 2, (1 * Gdx.graphics.getHeight()) / 4, alpha);
+        renderer.text(displayedText, Constants.STANDARD_RES_WIDTH / 2, (1 * Constants.STANDARD_RES_HEIGHT) / 4, alpha);
     }
 
 }

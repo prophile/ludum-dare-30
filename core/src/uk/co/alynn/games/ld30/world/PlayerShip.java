@@ -1,6 +1,5 @@
 package uk.co.alynn.games.ld30.world;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 
 public class PlayerShip {
@@ -34,8 +33,8 @@ public class PlayerShip {
         float yPrime = m_y;
         xPrime += dt*Constants.SPEED*Math.cos(m_heading);
         yPrime += dt*Constants.SPEED*Math.sin(m_heading);
-        xPrime = wrap(xPrime, Gdx.graphics.getWidth());
-        yPrime = wrap(yPrime, Gdx.graphics.getHeight());
+        xPrime = wrap(xPrime, Constants.STANDARD_RES_WIDTH);
+        yPrime = wrap(yPrime, Constants.STANDARD_RES_HEIGHT);
         return new PlayerShip(xPrime, yPrime, m_heading);
     }
     

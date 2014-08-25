@@ -8,7 +8,6 @@ import uk.co.alynn.games.ld30.world.Constants;
 import uk.co.alynn.games.ld30.world.Destroyer;
 import uk.co.alynn.games.ld30.world.EnteringInvader;
 import uk.co.alynn.games.ld30.world.Planet;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 
 public abstract class Wave {
@@ -17,11 +16,11 @@ public abstract class Wave {
     private boolean m_spawnedDangerousEnemy;
 
     private final float x(float percent) {
-        return percent*0.01f*Gdx.graphics.getWidth();
+        return percent*0.01f*Constants.STANDARD_RES_WIDTH;
     }
     
     private final float y(float percent) {
-        return percent*0.01f*Gdx.graphics.getHeight();
+        return percent*0.01f*Constants.STANDARD_RES_HEIGHT;
     }
     
     public final boolean dispatch(List<Planet> planets, List<Adversary> adversaries, int tick) {
