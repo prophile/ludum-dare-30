@@ -133,6 +133,26 @@ public abstract class WaveData {
                     return tick >= 10;
                 }
             };
+        case 7:
+            return new Wave() {
+                protected boolean tick(int tick) {
+                    switch (tick) {
+                    case 1:
+                        spawnDestroyer(-5, 105);
+                        spawnDestroyer(105, 105);
+                        break;
+                    case 2:
+                        spawnAsteroid(30, 105, -100);
+                        break;
+                    case 4:
+                        spawnInvader(22, -5, 2);
+                        spawnInvader(50, -5, 2);
+                        spawnInvader(78, -5, 2);
+                        break;
+                    }
+                    return tick >= 4;
+                }
+            };
         default:
             if (wave % 5 == 0) {
                 return spawnGenericBossWave((wave / 5) - 1);
