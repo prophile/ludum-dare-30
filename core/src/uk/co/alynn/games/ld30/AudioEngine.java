@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 
 public class AudioEngine {
@@ -22,6 +23,11 @@ public class AudioEngine {
         
         loadEffect("player-die", "dashed.wav");
         loadEffect("player-respawn", "respawn.wav");
+        
+        Music mainMusic = Gdx.audio.newMusic(Gdx.files.internal("music/main.ogg"));
+        mainMusic.setLooping(true);
+        mainMusic.setVolume(0.4f);
+        mainMusic.play();
     }
     
     private void loadEffect(String name, String file) {
