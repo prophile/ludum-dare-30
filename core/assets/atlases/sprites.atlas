@@ -1,208 +1,208 @@
 
 sprites.png
-size: 718,997
+size: 766,612
 format: RGBA8888
 filter: MipMapLinearLinear,Linear
 repeat: none
 asteroid-0
   rotate: false
-  xy: 254, 361
+  xy: 556, 34
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-1
   rotate: false
-  xy: 2, 36
+  xy: 658, 560
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-10
   rotate: false
-  xy: 254, 293
+  xy: 637, 510
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-11
   rotate: false
-  xy: 506, 570
+  xy: 637, 476
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-12
   rotate: false
-  xy: 606, 852
+  xy: 637, 442
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-13
   rotate: false
-  xy: 254, 259
+  xy: 637, 408
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-14
   rotate: false
-  xy: 506, 536
+  xy: 637, 374
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-15
   rotate: false
-  xy: 606, 818
+  xy: 637, 340
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-16
   rotate: false
-  xy: 254, 225
+  xy: 706, 580
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-17
   rotate: false
-  xy: 506, 502
+  xy: 737, 580
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-18
   rotate: false
-  xy: 606, 784
+  xy: 598, 51
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-19
   rotate: false
-  xy: 254, 191
+  xy: 629, 51
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-2
   rotate: false
-  xy: 304, 436
+  xy: 606, 510
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-20
   rotate: false
-  xy: 606, 750
+  xy: 660, 51
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-21
   rotate: false
-  xy: 254, 157
+  xy: 691, 42
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-22
   rotate: false
-  xy: 606, 716
+  xy: 722, 42
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-23
   rotate: false
-  xy: 254, 123
+  xy: 668, 526
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-24
   rotate: false
-  xy: 356, 461
+  xy: 668, 492
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-3
   rotate: false
-  xy: 506, 638
+  xy: 606, 476
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-4
   rotate: false
-  xy: 606, 920
+  xy: 606, 442
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-5
   rotate: false
-  xy: 254, 327
+  xy: 606, 408
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-6
   rotate: false
-  xy: 2, 2
+  xy: 606, 374
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-7
   rotate: false
-  xy: 304, 402
+  xy: 606, 340
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-8
   rotate: false
-  xy: 506, 604
+  xy: 702, 76
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-9
   rotate: false
-  xy: 606, 886
+  xy: 733, 76
   size: 29, 32
   orig: 29, 32
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 558, 684
+  xy: 304, 2
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
   index: -1
 destroyer
   rotate: false
-  xy: 2, 112
+  xy: 304, 29
   size: 250, 281
   orig: 250, 281
   offset: 0, 0
   index: -1
 explosion
   rotate: false
-  xy: 2, 70
+  xy: 556, 68
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 health
   rotate: false
-  xy: 606, 979
+  xy: 606, 594
   size: 98, 18
   split: 6, 6, 3, 3
   orig: 98, 18
@@ -210,63 +210,63 @@ health
   index: -1
 invader-0
   rotate: false
-  xy: 304, 470
+  xy: 606, 569
   size: 50, 23
   orig: 50, 23
   offset: 0, 0
   index: -1
 invader-1
   rotate: false
-  xy: 506, 672
+  xy: 598, 85
   size: 50, 23
   orig: 50, 23
   offset: 0, 0
   index: -1
 invader-2
   rotate: false
-  xy: 606, 954
+  xy: 606, 544
   size: 50, 23
   orig: 50, 23
   offset: 0, 0
   index: -1
 invader-3
   rotate: false
-  xy: 44, 87
+  xy: 650, 85
   size: 50, 23
   orig: 50, 23
   offset: 0, 0
   index: -1
 planet-1
   rotate: false
-  xy: 2, 697
+  xy: 2, 312
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 planet-2
   rotate: false
-  xy: 2, 395
+  xy: 2, 10
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 planet-3
   rotate: false
-  xy: 304, 697
+  xy: 304, 312
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 ship
   rotate: false
-  xy: 304, 495
+  xy: 556, 110
   size: 200, 200
   orig: 200, 200
   offset: 0, 0
   index: -1
 target
   rotate: false
-  xy: 706, 985
+  xy: 304, 15
   size: 12, 12
   orig: 12, 12
   offset: 0, 0

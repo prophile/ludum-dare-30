@@ -9,7 +9,7 @@ public class PackTextures {
     public static void main(String[] args) {
         Settings settings = new Settings();
         settings.useIndexes = false;
-        settings.pot = true;
+        settings.pot = false;
         settings.filterMag = TextureFilter.Linear;
         settings.filterMin = TextureFilter.MipMapLinearLinear;
         settings.rotation = false;
