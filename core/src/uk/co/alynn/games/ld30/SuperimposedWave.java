@@ -17,8 +17,8 @@ public class SuperimposedWave extends Wave {
     @Override
     public boolean dispatch(List<Planet> planets, List<Adversary> adversaries, int tickID) {
         boolean ok = true;
-        ok = ok && m_left.dispatch(planets, adversaries, tickID);
-        ok = ok && m_right.dispatch(planets, adversaries, tickID);
+        ok = m_left.dispatch(planets, adversaries, tickID) && ok;
+        ok = m_right.dispatch(planets, adversaries, tickID) && ok;
         return ok;
     }
 
