@@ -6,14 +6,11 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Buttons;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.FitViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class SpaceHams extends ApplicationAdapter {
@@ -21,6 +18,12 @@ public class SpaceHams extends ApplicationAdapter {
 	private GameMode m_mode;
 	
 	private Viewport m_viewport;
+	
+	private Vector2 mousePosition() {
+	    Vector2 tgt = m_viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+        tgt.add(Constants.STANDARD_RES_WIDTH * 0.5f, Constants.STANDARD_RES_HEIGHT * 0.5f);
+        return tgt;
+	}
 	
 	@Override
 	public void create () {
@@ -86,10 +89,9 @@ public class SpaceHams extends ApplicationAdapter {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer,
                     int button) {
-                int xTarget = screenX;
-                int yTarget = (Gdx.graphics.getHeight() - screenY);
+                Vector2 tgt = mousePosition();
                 if (button == Buttons.LEFT) {
-                    m_mode.leftClick(xTarget, yTarget);
+                    m_mode.leftClick((int)tgt.x, (int)tgt.y);
                     return true;
                 }
                 return false;
@@ -123,7 +125,8 @@ public class SpaceHams extends ApplicationAdapter {
 	public void render () {
 	    m_viewport.apply();
 	    Animate.update(Gdx.graphics.getDeltaTime());
-	    m_mode.rightMouse(Gdx.input.isButtonPressed(Buttons.RIGHT), Gdx.input.getX(), Gdx.graphics.getHeight() - Gdx.input.getY());
+	    final Vector2 tgt = mousePosition();
+	    m_mode.rightMouse(Gdx.input.isButtonPressed(Buttons.RIGHT), (int)tgt.x, (int)tgt.y);
 	    GameMode nextMode = m_mode.update();
 	    m_renderer.frame(new Runnable() {
 
