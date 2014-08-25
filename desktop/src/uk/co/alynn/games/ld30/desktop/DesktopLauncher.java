@@ -15,7 +15,7 @@ public class DesktopLauncher {
 		config.vSyncEnabled = true;
 		config.title = "Border Patrol";
 		config.resizable = true;
-		config.fullscreen = true;
+		config.fullscreen = System.getProperty("os.name").equals("Mac OS X");
 		new LwjglApplication(new SpaceHams(), config);
 	}
 }
