@@ -18,6 +18,7 @@ public class AudioEngine {
         loadEffect("invader-shoot", "dink.wav");
         loadEffect("invader-hit-planet", "dop.wav");
         loadEffect("game-over", "tish.wav");
+        loadEffect("new-wave", "newwave.wav");
     }
     
     private void loadEffect(String name, String file) {

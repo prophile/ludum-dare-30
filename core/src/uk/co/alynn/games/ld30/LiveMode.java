@@ -252,10 +252,13 @@ public class LiveMode implements GameMode {
     private void spawnNewAdversaries() {
         float dt = Gdx.graphics.getDeltaTime();
         m_waveTime += dt;
-        int waveTick = (int)(m_waveTime / Constants.SECONDS_PER_TICK);
+        int waveTick = (int)Math.floor(m_waveTime / Constants.SECONDS_PER_TICK);
         Wave wave = WaveData.getWave(m_wave);
         boolean endable = false;
-        while (m_queuedTick < waveTick) {
+        while (m_queuedTick <= waveTick) {
+            if (m_queuedTick == 0) {
+                AudioEngine.get().play("new-wave");
+            }
             // spawning logic
             endable = wave.dispatch(m_planets, m_adversaries, m_queuedTick++);
         }
