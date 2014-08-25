@@ -73,7 +73,7 @@ public class Destroyer implements Adversary {
 
     @Override
     public Adversary hitPlanet(DamagePlanet damage) {
-        return null;
+        return this;
     }
 
     @Override
