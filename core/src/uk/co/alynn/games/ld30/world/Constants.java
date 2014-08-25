@@ -20,4 +20,5 @@ public final class Constants {
     public static final float SPEED_DESTROYER = SPEED - 40.0f;
     public static final float DESTROYER_INITIAL_COOLDOWN = 0.6f;
     public static final float DESTROYER_LATER_COOLDOWN = 0.4f;
+    public static final boolean ENABLE_FPS = false;
 }

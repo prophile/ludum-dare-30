@@ -3,6 +3,8 @@ package uk.co.alynn.games.ld30;
 import java.util.HashMap;
 import java.util.Map;
 
+import uk.co.alynn.games.ld30.world.Constants;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -53,7 +55,8 @@ public class Renderer {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         m_spriteBatch.begin();
         renderFrame.run();
-        text("FPS: " + Gdx.graphics.getFramesPerSecond(), 70, Gdx.graphics.getHeight() - 40, 0.7f);
+        if (Constants.ENABLE_FPS)
+            text("FPS: " + Gdx.graphics.getFramesPerSecond(), 70, Gdx.graphics.getHeight() - 40, 0.7f);
         m_spriteBatch.end();
     }
     
