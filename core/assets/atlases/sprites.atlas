@@ -1,89 +1,208 @@
 
 sprites.png
-size: 1020,1022
+size: 718,997
 format: RGBA8888
 filter: MipMapLinearLinear,Linear
 repeat: none
 asteroid-0
   rotate: false
-  xy: 319, 708
-  size: 331, 314
-  orig: 331, 314
+  xy: 254, 361
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-1
+  rotate: false
+  xy: 2, 36
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-10
+  rotate: false
+  xy: 254, 293
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-11
   rotate: false
-  xy: 2, 676
-  size: 315, 346
-  orig: 315, 346
+  xy: 506, 570
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-12
   rotate: false
-  xy: 2, 332
-  size: 303, 342
-  orig: 303, 342
+  xy: 606, 852
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-13
   rotate: false
-  xy: 2, 18
-  size: 309, 312
-  orig: 309, 312
+  xy: 254, 259
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-14
+  rotate: false
+  xy: 506, 536
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-15
+  rotate: false
+  xy: 606, 818
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-16
+  rotate: false
+  xy: 254, 225
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-17
+  rotate: false
+  xy: 506, 502
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-18
   rotate: false
-  xy: 652, 729
-  size: 352, 293
-  orig: 352, 293
+  xy: 606, 784
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-19
   rotate: false
-  xy: 652, 446
-  size: 360, 281
-  orig: 360, 281
+  xy: 254, 191
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-2
+  rotate: false
+  xy: 304, 436
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-20
+  rotate: false
+  xy: 606, 750
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-21
   rotate: false
-  xy: 652, 204
-  size: 368, 240
-  orig: 368, 240
+  xy: 254, 157
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-22
+  rotate: false
+  xy: 606, 716
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-23
   rotate: false
-  xy: 319, 410
-  size: 331, 296
-  orig: 331, 296
+  xy: 254, 123
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 asteroid-24
   rotate: false
-  xy: 313, 96
-  size: 331, 312
-  orig: 331, 312
+  xy: 356, 461
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-3
+  rotate: false
+  xy: 506, 638
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-4
+  rotate: false
+  xy: 606, 920
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-5
+  rotate: false
+  xy: 254, 327
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-6
+  rotate: false
+  xy: 2, 2
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-7
+  rotate: false
+  xy: 304, 402
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-8
+  rotate: false
+  xy: 506, 604
+  size: 29, 32
+  orig: 29, 32
+  offset: 0, 0
+  index: -1
+asteroid-9
+  rotate: false
+  xy: 606, 886
+  size: 29, 32
+  orig: 29, 32
   offset: 0, 0
   index: -1
 bullet
   rotate: false
-  xy: 307, 663
+  xy: 558, 684
   size: 10, 11
   orig: 10, 11
   offset: 0, 0
   index: -1
+destroyer
+  rotate: false
+  xy: 2, 112
+  size: 250, 281
+  orig: 250, 281
+  offset: 0, 0
+  index: -1
 explosion
   rotate: false
-  xy: 848, 162
+  xy: 2, 70
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 health
   rotate: false
-  xy: 313, 76
+  xy: 606, 979
   size: 98, 18
   split: 6, 6, 3, 3
   orig: 98, 18
@@ -91,201 +210,64 @@ health
   index: -1
 invader-0
   rotate: false
-  xy: 313, 51
+  xy: 304, 470
   size: 50, 23
   orig: 50, 23
   offset: 0, 0
   index: -1
 invader-1
   rotate: false
-  xy: 890, 179
+  xy: 506, 672
   size: 50, 23
   orig: 50, 23
   offset: 0, 0
   index: -1
 invader-2
   rotate: false
-  xy: 313, 26
+  xy: 606, 954
   size: 50, 23
   orig: 50, 23
   offset: 0, 0
   index: -1
 invader-3
   rotate: false
-  xy: 942, 179
+  xy: 44, 87
   size: 50, 23
   orig: 50, 23
   offset: 0, 0
   index: -1
-ship
-  rotate: false
-  xy: 646, 2
-  size: 200, 200
-  orig: 200, 200
-  offset: 0, 0
-  index: -1
-target
-  rotate: false
-  xy: 1006, 1010
-  size: 12, 12
-  orig: 12, 12
-  offset: 0, 0
-  index: -1
-
-sprites2.png
-size: 981,974
-format: RGBA8888
-filter: MipMapLinearLinear,Linear
-repeat: none
-asteroid-1
-  rotate: false
-  xy: 649, 49
-  size: 310, 305
-  orig: 310, 305
-  offset: 0, 0
-  index: -1
-asteroid-10
-  rotate: false
-  xy: 338, 625
-  size: 286, 349
-  orig: 286, 349
-  offset: 0, 0
-  index: -1
-asteroid-14
-  rotate: false
-  xy: 2, 2
-  size: 319, 310
-  orig: 319, 310
-  offset: 0, 0
-  index: -1
-asteroid-15
-  rotate: false
-  xy: 323, 26
-  size: 324, 303
-  orig: 324, 303
-  offset: 0, 0
-  index: -1
-asteroid-16
-  rotate: false
-  xy: 286, 331
-  size: 338, 292
-  orig: 338, 292
-  offset: 0, 0
-  index: -1
-asteroid-17
-  rotate: false
-  xy: 2, 669
-  size: 334, 305
-  orig: 334, 305
-  offset: 0, 0
-  index: -1
-asteroid-22
-  rotate: false
-  xy: 626, 701
-  size: 355, 273
-  orig: 355, 273
-  offset: 0, 0
-  index: -1
-asteroid-6
-  rotate: false
-  xy: 626, 356
-  size: 281, 343
-  orig: 281, 343
-  offset: 0, 0
-  index: -1
-asteroid-9
-  rotate: false
-  xy: 2, 314
-  size: 282, 353
-  orig: 282, 353
-  offset: 0, 0
-  index: -1
-
-sprites3.png
-size: 965,933
-format: RGBA8888
-filter: MipMapLinearLinear,Linear
-repeat: none
-asteroid-2
-  rotate: false
-  xy: 589, 321
-  size: 298, 310
-  orig: 298, 310
-  offset: 0, 0
-  index: -1
-asteroid-20
-  rotate: false
-  xy: 2, 680
-  size: 359, 253
-  orig: 359, 253
-  offset: 0, 0
-  index: -1
-asteroid-3
-  rotate: false
-  xy: 554, 6
-  size: 288, 313
-  orig: 288, 313
-  offset: 0, 0
-  index: -1
-asteroid-4
-  rotate: false
-  xy: 267, 9
-  size: 285, 320
-  orig: 285, 320
-  offset: 0, 0
-  index: -1
-asteroid-5
-  rotate: false
-  xy: 2, 351
-  size: 283, 327
-  orig: 283, 327
-  offset: 0, 0
-  index: -1
-asteroid-8
-  rotate: false
-  xy: 2, 2
-  size: 263, 347
-  orig: 263, 347
-  offset: 0, 0
-  index: -1
 planet-1
   rotate: false
-  xy: 363, 633
+  xy: 2, 697
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 planet-2
   rotate: false
-  xy: 665, 633
+  xy: 2, 395
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
 planet-3
   rotate: false
-  xy: 287, 331
+  xy: 304, 697
   size: 300, 300
   orig: 300, 300
   offset: 0, 0
   index: -1
-
-sprites4.png
-size: 524,340
-format: RGBA8888
-filter: MipMapLinearLinear,Linear
-repeat: none
-asteroid-7
+ship
   rotate: false
-  xy: 2, 2
-  size: 270, 338
-  orig: 270, 338
+  xy: 304, 495
+  size: 200, 200
+  orig: 200, 200
   offset: 0, 0
   index: -1
-destroyer
+target
   rotate: false
-  xy: 274, 59
-  size: 250, 281
-  orig: 250, 281
+  xy: 706, 985
+  size: 12, 12
+  orig: 12, 12
   offset: 0, 0
   index: -1

@@ -36,7 +36,7 @@ public class SpaceHams extends ApplicationAdapter {
         for (int i = 0; i < 25; ++i) {
             m_renderer.addSprite("asteroid-" + i,
                                  atlas.findRegion("asteroid-" + i),
-                                 0.1f);
+                                 1.0f);
         }
         m_renderer.addSprite("invader-0", atlas.findRegion("invader-0"), 1.0f);
         m_renderer.addSprite("invader-1", atlas.findRegion("invader-1"), 1.0f);
