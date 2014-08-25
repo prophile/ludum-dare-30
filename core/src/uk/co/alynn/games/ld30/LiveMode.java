@@ -238,7 +238,11 @@ public class LiveMode implements GameMode {
             endable = wave.dispatch(m_planets, m_adversaries, m_queuedTick++);
         }
         // ending logic
-        // TODO: implement me
+        if (endable && m_adversaries.isEmpty()) {
+            ++m_wave;
+            m_queuedTick = 0;
+            m_waveTime = 0.0f;
+        }
     }
 
     private void updateAdversaries() {
