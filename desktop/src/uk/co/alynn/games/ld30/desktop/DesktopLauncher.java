@@ -15,7 +15,7 @@ public class DesktopLauncher {
 		config.vSyncEnabled = true;
 		config.title = "Intergalactopol";
 		config.resizable = true;
-		config.fullscreen = System.getProperty("os.name").equals("Mac OS X");
+		config.fullscreen = false;
 		new LwjglApplication(new SpaceHams(), config);
 	}
 }
